@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "floorplan.standard/1",
+  "metadata": {
+    "name": "两室一厅（格式 C 回归样例）",
+    "units": "mm",
+    "coordinateSystem": "top-left-inner-y-down",
+    "ceilingHeight": 2800
+  },
+  "walls": [
+    { "id": "w1", "rect": [0, 0, 8000, 240],      "kind": "exterior",   "bearing": "unknown" },
+    { "id": "w2", "rect": [0, 5760, 8000, 6000],  "kind": "exterior",   "bearing": "unknown" },
+    { "id": "w3", "rect": [0, 0, 240, 6000],      "kind": "exterior",   "bearing": "unknown" },
+    { "id": "w4", "rect": [7760, 0, 8000, 6000],  "kind": "exterior",   "bearing": "unknown" },
+    { "id": "w5", "rect": [3880, 240, 4120, 5760], "kind": "interior",  "bearing": "bearing" },
+    { "id": "w6", "rect": [4120, 3000, 7760, 3240], "kind": "interior", "bearing": "non_bearing" },
+    { "id": "w7", "rect": [240, 240, 480, 1440],  "kind": "low",        "bearing": "unknown" },
+    { "id": "w8", "rect": [240, 240, 2000, 480],  "kind": "interior",   "bearing": "non_bearing" }
+  ],
+  "windows": [
+    { "id": "win1", "rect": [1000, 0, 2200, 240],      "kind": "standard", "sillHeight": 900, "height": 1500 },
+    { "id": "win2", "rect": [7760, 800, 8000, 2000],   "kind": "standard", "sillHeight": 900, "height": 1500 },
+    { "id": "win3", "rect": [3000, 5760, 4200, 6000],  "kind": "standard", "sillHeight": 900, "height": 1500 }
+  ],
+  "doors": [
+    { "id": "d1", "name": "入户门",   "rect": [1900, 5760, 2800, 6000], "hinge": [1900, 5760], "closeDir": [1, 0],  "openDir": [0, -1], "width": 900, "height": 2050, "entry": true,  "lintelHeight": 2100, "swing": "swing" },
+    { "id": "d2", "name": "卧室A门", "rect": [3880, 1200, 4120, 2100], "hinge": [3880, 2100], "closeDir": [0, -1], "openDir": [1, 0],  "width": 900, "height": 2050,                  "lintelHeight": 2100, "swing": "swing" },
+    { "id": "d3", "name": "卧室B门", "rect": [5000, 3000, 5900, 3240], "hinge": [5000, 3000], "closeDir": [1, 0],  "openDir": [0, 1],  "width": 900, "height": 2050,                  "lintelHeight": 2100, "swing": "swing" }
+  ],
+  "slides": [],
+  "rooms": [
+    { "id": "living",  "name": "客厅",  "polygon": [[240, 240], [3880, 240], [3880, 5760], [240, 5760]],   "matId": "tile800", "labelAt": [2000, 3000], "counted": true,  "floorElevation": 0 },
+    { "id": "bedA",    "name": "卧室A", "polygon": [[4120, 240], [7760, 240], [7760, 3000], [4120, 3000]], "matId": "wood",    "labelAt": [5940, 1600], "counted": true,  "floorElevation": 0 },
+    { "id": "bedB",    "name": "卧室B", "polygon": [[4120, 3240], [7760, 3240], [7760, 5760], [4120, 5760]], "matId": "wood",  "labelAt": [5940, 4500], "counted": true,  "floorElevation": 0 }
+  ]
+}

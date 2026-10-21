@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "floorplan.standard/1",
+  "metadata": {
+    "name": "户型名称（自定义）",
+    "units": "mm",
+    "coordinateSystem": "top-left-inner-y-down",
+    "ceilingHeight": 2800,
+    "bounds": [0, 0, 8000, 6000]
+  },
+  "walls": [
+    { "id": "w1", "rect": [0, 0, 8000, 240], "kind": "exterior", "bearing": "unknown" }
+  ],
+  "windows": [
+    { "id": "win1", "rect": [1000, 0, 2200, 240], "kind": "standard", "sillHeight": 900, "height": 1500 }
+  ],
+  "doors": [
+    { "id": "d1", "name": "门名（自定义）", "rect": [1900, 0, 2800, 240], "hinge": [1900, 240], "closeDir": [1, 0], "openDir": [0, 1], "width": 900, "height": 2050, "entry": false, "lintelHeight": 2100, "swing": "swing" }
+  ],
+  "slides": [
+    { "id": "s1", "rect": [3000, 0, 4200, 240], "vertical": false, "height": 2100 }
+  ],
+  "rooms": [
+    { "id": "room1", "name": "房间名（自定义）", "polygon": [[240, 240], [7760, 240], [7760, 5760], [240, 5760]], "matId": "tile800", "labelAt": [4000, 3000], "counted": true, "floorElevation": 0 }
+  ],
+  "materials": {
+    "tile800": { "name": "800 地砖", "price": 220, "sw": "#ebe6dc" }
+  }
+}
