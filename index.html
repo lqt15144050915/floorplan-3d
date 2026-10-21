@@ -426,11 +426,17 @@ const modelKey = m => m.meta.key || (m.meta.key = m.meta.isDefault ? 'builtin' :
 const wallChar = w => w.bearing === 'bearing' ? 'b' : w.kind === 'low' ? 'low' : w.kind === 'exterior' ? 'e' : w.kind === 'interior' ? 'n' : 'u';
 function viewBounds(m){   // 声明的 BOUNDS 完整包含几何时优先（保留作者留白），否则用计算包围盒
   const g = m.bounds || {x:0, y:0, w:1000, h:1000};
+  let b = {x:g.x, y:g.y, w:g.w, h:g.h};
   const d = m.meta.declaredBounds;
   if (d && typeof d.x === 'number' && isFinite(d.x) && d.w > 0 && d.h > 0 &&
       d.x <= g.x && d.y <= g.y && d.x + d.w >= g.x + g.w && d.y + d.h >= g.y + g.h)
-    return {x:d.x, y:d.y, w:d.w, h:d.h};
-  return {x:g.x, y:g.y, w:g.w, h:g.h};
+    b = {x:d.x, y:d.y, w:d.w, h:d.h};
+  if (!m.dims){   // 导入户型的自动尺寸链画在图外，视野预留空间
+    const nx = Math.min(b.x, g.x - 1150), ny = Math.min(b.y, g.y - 1150);
+    const ne = Math.max(b.x + b.w, g.x + g.w + 700), nye = Math.max(b.y + b.h, g.y + g.h + 700);
+    b = {x:nx, y:ny, w:ne-nx, h:nye-ny};
+  }
+  return b;
 }
 function syncModelVars(){
   const m = planModel;
@@ -796,7 +802,6 @@ function renderOpenings(){
     const sweep = d.o[0]*d.c[1] - d.o[1]*d.c[0] > 0 ? 1 : 0;
     const col = d.entry ? '#b5653a' : '#3d3a34';
     s += `<polygon points="${hx},${hy} ${ox},${oy} ${ox+d.c[0]*T},${oy+d.c[1]*T} ${hx+d.c[0]*T},${hy+d.c[1]*T}" fill="#fff" stroke="${col}" stroke-width="${d.entry?1.8:1}" vector-effect="non-scaling-stroke"/>`;
-    s += `<path d="M${ox} ${oy}A${L} ${L} 0 0 ${sweep} ${cx} ${cy}" fill="none" ${DS} stroke-dasharray="5 3" opacity=".7"/>`;
   });
   SLIDES.forEach(({rect:[x0,y0,x1,y1],v}) => {
     if (v){ const L = y1-y0, m = (x0+x1)/2; s += `<rect x="${m-45}" y="${y0}" width="40" height="${L*.55}" fill="#fff" ${DS}/><rect x="${m+5}" y="${y1-L*.55}" width="40" height="${L*.55}" fill="#fff" ${DS}/>`; }
@@ -835,8 +840,10 @@ function renderLabels(){
   g.setAttribute('display', ui.layers.labels ? 'inline' : 'none');
   g.innerHTML = ROOMS.filter(r => r.at).map(r => {
     const [x,y] = r.at, halo = 'stroke="#fbf9f4" stroke-width="45" paint-order="stroke" stroke-linejoin="round"';
+    const b = bbox(r.poly);
     return `<text x="${x}" y="${y}" font-size="250" font-weight="600" text-anchor="middle" fill="#2b2824" ${halo}>${esc(nm(state.rooms[r.id].name))}</text>
-      <text x="${x}" y="${y+260}" font-size="175" text-anchor="middle" fill="#7d7366" ${halo}>${fmt(area(r.poly))} m²</text>`;
+      <text x="${x}" y="${y+260}" font-size="175" text-anchor="middle" fill="#7d7366" ${halo}>${fmt(area(r.poly))} m²</text>
+      <text x="${x}" y="${y+455}" font-size="150" text-anchor="middle" fill="#8a8175" ${halo}>${Math.round(b[2]-b[0])} × ${Math.round(b[3]-b[1])}</text>`;
   }).join('');
 }
 
@@ -858,13 +865,42 @@ function renderDims(){
   g.setAttribute('display', ui.layers.dims ? 'inline' : 'none');
 }
 
-// 导入户型的自动尺寸链：外包两条（总宽 / 总高）
+// 导入户型的自动尺寸链：按四条边带内的墙段/门窗边缘生成分段链 + 总体链
 function autoDims(){
-  const b = planModel.bounds || {x:0, y:0, w:1000, h:1000};
-  return [
-    {horiz:true,  at:b.y - 500, start:b.x, segs:[Math.round(b.w)]},
-    {horiz:false, at:b.x - 550, start:b.y, segs:[Math.round(b.h)]},
-  ];
+  const m = planModel, b = m.bounds;
+  if (!b) return [];
+  const rects = m.walls.map(w => w.rect).concat(m.windows.map(w => w.rect));
+  const T = 450, MIN = 60;                                   // 边带厚度 / 最小段长
+  const bandEdges = (filter, axis) => {
+    const set = new Set();
+    rects.filter(filter).forEach(r => { set.add(r[axis]); set.add(r[axis+2]); });
+    const vs = [...set].sort((a,b) => a-b);
+    const out = [];
+    vs.forEach(v => { if (!out.length || v - out[out.length-1] >= MIN) out.push(Math.round(v)); });
+    return out;
+  };
+  const segsOf = (coords, start) => {
+    const segs = []; let prev = start;
+    coords.forEach(v => { const len = Math.round(v - prev); if (len >= MIN) segs.push(len); prev = v; });
+    return segs;
+  };
+  const gw = Math.round(b.w), gh = Math.round(b.h);
+  const N = bandEdges(r => r[3] <= b.y + T, 0);              // 北带（墙+窗全在带内）
+  const S = bandEdges(r => r[1] >= b.y + b.h - T, 0);
+  const W = bandEdges(r => r[2] <= b.x + T, 1);
+  const E = bandEdges(r => r[0] >= b.x + b.w - T, 1);
+  const chains = [];
+  if (N.length > 1){
+    chains.push({horiz:true,  at:b.y-500,  start:N[0], segs:segsOf(N, N[0])});
+    chains.push({horiz:true,  at:b.y-1000, start:Math.round(b.x), segs:[gw]});
+  }
+  if (S.length > 1) chains.push({horiz:true,  at:b.y+b.h+500, start:S[0], segs:segsOf(S, S[0])});
+  if (W.length > 1){
+    chains.push({horiz:false, at:b.x-500,  start:W[0], segs:segsOf(W, W[0])});
+    chains.push({horiz:false, at:b.x-1000, start:Math.round(b.y), segs:[gh]});
+  }
+  if (E.length > 1) chains.push({horiz:false, at:b.x+b.w+500, start:E[0], segs:segsOf(E, E[0])});
+  return chains;
 }
 
 function renderGrid(){
@@ -1687,7 +1723,6 @@ function planPreviewSVG(m){
       const sweep = d.openDir[0]*d.closeDir[1] - d.openDir[1]*d.closeDir[0] > 0 ? 1 : 0;
       const col = d.entry ? '#b5653a' : '#3d3a34';
       s += `<polygon points="${hx},${hy} ${ox},${oy} ${cx2},${cy2}" fill="#fff" stroke="${col}" stroke-width="${d.entry?1.8:1}" vector-effect="non-scaling-stroke"/>`;
-      s += `<path d="M${ox} ${oy}A${L} ${L} 0 0 ${sweep} ${cx2} ${cy2}" fill="none" stroke="#3d3a34" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="5 3" opacity=".7"/>`;
     } else {
       const [x0,y0,x1,y1] = d.rect, hz = (x1-x0) >= (y1-y0);
       s += hz ? `<line x1="${x0}" y1="${y0}" x2="${x0}" y2="${y1}" ${DS}/><line x1="${x1}" y1="${y0}" x2="${x1}" y2="${y1}" ${DS}/>`

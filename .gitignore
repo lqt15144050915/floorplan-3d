@@ -27,3 +27,7 @@ tmp/
 # 隐私数据：真实住宅户型样例（仅本地保留，严禁提交）
 samples/最终改图_*.json
 *.private.json
+
+# 用户改图转换产物（含户型设计数据，仅本地保留）
+tools/*.json
+tools/compare.html
