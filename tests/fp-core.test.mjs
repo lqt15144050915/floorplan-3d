@@ -203,6 +203,45 @@ test('格式 C：材质合并与未知材质回退', () => {
 });
 
 /* ======================= 6. Validator：错误（拒绝导入） ======================= */
+test('窗框分格：导入导出保留比例和样式，且不改变窗洞', () => {
+  const src = JSON.parse(twoRoom());
+  src.windows[0].frame = {panelRatios:[1,3.75,3.75,1], width:30, depth:60, color:'#202020'};
+  const original = structuredClone(src), r = FPCore.importFromText(JSON.stringify(src));
+  assert.equal(r.ok, true, JSON.stringify(r.errors));
+  const out = FPCore.exportStandard(r.model);
+  assert.deepEqual(out.windows[0].frame, original.windows[0].frame);
+  assert.deepEqual(out.windows[0].rect, original.windows[0].rect);
+  assert.deepEqual(src, original);
+  out.windows[0].frame.panelRatios[0] = 99;
+  assert.equal(r.model.windows[0].frame.panelRatios[0], 1);
+});
+
+test('窗框分格：两窄两宽，框料和玻璃都位于窗洞内，短边可整片', () => {
+  const w = {rect:[0,0,6000,240], height:2200, frame:{panelRatios:[1,4,4,1], width:60}};
+  const f = FPCore.windowFrameLayout(w);
+  assert.equal(f.panels.length, 4);
+  assert.equal(f.bars.length, 5);
+  assert.equal(f.bars[0].start, 0);
+  assert.equal(f.bars.at(-1).end, 6000);
+  const widths = f.panels.map(p => p.end-p.start);
+  assert.equal(widths[0], widths[3]);
+  assert.equal(widths[1], widths[2]);
+  assert.equal(widths[1], 4*widths[0]);
+  const short = FPCore.windowFrameLayout({rect:[0,0,240,1500], frame:{panelRatios:[1], width:60}});
+  assert.deepEqual(short.panels, [{start:60, end:1440}]);
+  assert.equal(FPCore.windowFrameLayout({rect:[0,0,6000,240]}), null);
+});
+
+test('窗框分格：拒绝非法比例、颜色和挤占玻璃的框宽', () => {
+  for (const frame of [null, [], {panelRatios:[]}, {panelRatios:[1,0]}, {panelRatios:[1,'2']},
+    {panelRatios:Array(33).fill(1)}, {color:'red'}, {width:-1}, {depth:0}, {panelRatios:[1,1], width:10000}]){
+    const src = JSON.parse(twoRoom()); src.windows[0].frame = frame;
+    const r = FPCore.importFromText(JSON.stringify(src));
+    assert.equal(r.ok, false, JSON.stringify(frame));
+    assert.ok(r.errors.some(e => e.code === 'bad_window_frame'));
+  }
+});
+
 test('错误：JSON 语法 / 未知格式 / 空墙体', () => {
   assert.equal(FPCore.importFromText('{oops', 'a.json').errors[0].code, 'bad_json');
   assert.equal(FPCore.importFromText('[]', 'a.json').errors[0].code, 'bad_json');

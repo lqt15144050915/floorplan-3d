@@ -44,6 +44,10 @@ python3 -m http.server 8000
 
 > Three.js 通过 jsDelivr CDN 加载，首次打开 3D 场景需要联网。
 
+本轮最新户型位于 [我的改图_阳台大玻璃.json](samples/我的改图_阳台大玻璃.json)。
+打开工具后用「文件 → 导入户型 JSON」载入；参考图纸、核对报告与效果图见
+[本轮资料说明](docs/review-2026-10-21/README.md)。相关资料已获用户授权入库。
+
 ## 快捷键
 
 | 按键 | 作用 |

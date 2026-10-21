@@ -1,0 +1,4 @@
+# 图纸与效果图必须按二进制保存，避免自动换行转换破坏 PDF 偏移或 CAD 数据。
+*.pdf binary
+*.dwg binary
+*.png binary

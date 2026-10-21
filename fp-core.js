@@ -253,6 +253,27 @@
     return best;
   }
 
+  // 可选窗框分格：按玻璃净宽的相对比例布局，所有框料均落在原窗洞内（单位 mm）。
+  // 未声明 frame 的旧模型继续使用原来的自动等分渲染。
+  function windowFrameLayout(w){
+    if (!w.frame || !rectOK(w.rect)) return null;
+    const f = w.frame, r = w.rect, length = Math.max(r[2]-r[0], r[3]-r[1]);
+    const ratios = f.panelRatios || Array(Math.max(1, Math.round(length / 900))).fill(1);
+    const width = f.width === undefined ? 40 : f.width;
+    const depth = f.depth === undefined ? 60 : f.depth;
+    const total = ratios.reduce((a, v) => a + v, 0), clear = length - (ratios.length + 1) * width;
+    if (clear <= 0 || !isNum(total) || total <= 0) return null;
+    const panels = [], bars = [{start:0, end:width}];
+    let cursor = width;
+    ratios.forEach((ratio, i) => {
+      const end = i === ratios.length-1 ? length-width : cursor + clear * ratio / total;
+      panels.push({start:cursor, end});
+      bars.push({start:end, end:end+width});
+      cursor = end + width;
+    });
+    return {length, width, depth, color:f.color || '#5d6166', panels, bars};
+  }
+
   /* ======================= Validator ======================= */
   /* 错误 = 拒绝导入（model=null）；警告 = 放行；默认值 = 记录 provenance。
    * 铁律：报告一律引用原始坐标，不修改几何。 */
@@ -307,7 +328,26 @@
       if (over > 2) warnings.push({code:'opening_over', path:o.id,
         message:`${kind === 'windows' ? '窗' : '门'}「${o.name || o.id}」超出嵌入墙 ${w.id} 约 ${Math.round(over)} mm（保留原始几何，仅提示）`});
     };
-    m.windows.forEach((w, i) => checkOpening(w, 'windows', i));
+    m.windows.forEach((w, i) => {
+      checkOpening(w, 'windows', i);
+      if (!w.frame) return;
+      const f = w.frame, P = `windows[${i}].frame`, ratios = f.panelRatios;
+      const validRatios = ratios === undefined || (Array.isArray(ratios) && ratios.length >= 1 && ratios.length <= 32
+        && ratios.every(v => isNum(v) && v > 0) && isNum(ratios.reduce((a,v) => a+v, 0)));
+      const width = f.width === undefined ? 40 : f.width;
+      if (!validRatios) errors.push({code:'bad_window_frame', path:P+'.panelRatios', message:'窗玻璃比例须为 1~32 个正数'});
+      if (!isNum(width) || width <= 0 || (isNum(w.height) && width*2 >= w.height))
+        errors.push({code:'bad_window_frame', path:P+'.width', message:'窗框宽度须为正数且小于窗高的一半'});
+      if (f.depth !== undefined && (!isNum(f.depth) || f.depth <= 0))
+        errors.push({code:'bad_window_frame', path:P+'.depth', message:'窗框进深须为正数'});
+      if (f.color !== undefined && (typeof f.color !== 'string' || !/^#[0-9a-f]{6}$/i.test(f.color)))
+        errors.push({code:'bad_window_frame', path:P+'.color', message:'窗框颜色须为六位十六进制色值'});
+      if (validRatios && isNum(width) && rectOK(w.rect)){
+        const length = Math.max(w.rect[2]-w.rect[0], w.rect[3]-w.rect[1]);
+        const n = ratios ? ratios.length : Math.max(1, Math.round(length/900));
+        if (length <= (n+1)*width) errors.push({code:'bad_window_frame', path:P, message:'窗框分格挤占全部玻璃净宽'});
+      }
+    });
     m.doors.forEach((d, i) => checkOpening(d, 'doors', i));
     // 门铰点 / 宽度 / 开向
     m.doors.forEach((d, i) => {
@@ -400,7 +440,8 @@
 
   /* ======================= Adapter：统一标准格式（格式 C） =======================
    * { schemaVersion:'floorplan.standard/1', metadata:{name,units,ceilingHeight,bounds?},
-   *   walls:[{id,rect,kind?,bearing?}], windows:[{id,rect,kind?,group?,sillHeight?,height?}],
+   *   walls:[{id,rect,kind?,bearing?}], windows:[{id,rect,kind?,group?,sillHeight?,height?,frame?}],
+   *   frame?:{panelRatios?:number[],width?:mm,depth?:mm,color?:'#rrggbb'},
    *   doors:[{id,name?,rect,hinge?,closeDir?,openDir?,width?,height?,entry?,lintelHeight?}],
    *   slides:[{id,rect,vertical?,height?}], rooms:[{id,name,polygon,matId?,labelAt?,counted?,floorElevation?}],
    *   materials? }                                                                     */
@@ -443,6 +484,12 @@
       const top = isNum(w.height) ? sill !== null ? sill + w.height : w.height + DEFAULTS.window.sill : null;
       if (sill === null) defaults.push({path:`windows[${i}].sillHeight`, value:DEFAULTS.window.sill, tag:'默认', reason:'未声明窗台高度'});
       if (top === null) defaults.push({path:`windows[${i}].height`, value:WINDOW_HEIGHT, tag:'默认', reason:'未声明窗高'});
+      let frame;
+      if (w.frame !== undefined){
+        if (!w.frame || typeof w.frame !== 'object' || Array.isArray(w.frame))
+          errors.push({code:'bad_window_frame', path:`windows[${i}].frame`, message:'窗框分格须为对象'});
+        else frame = {...w.frame, ...(Array.isArray(w.frame.panelRatios) ? {panelRatios:w.frame.panelRatios.slice()} : {})};
+      }
       return {
         id: typeof w.id === 'string' ? w.id : 'win'+i,
         rect: Array.isArray(w.rect) ? w.rect.slice() : null, wallId: null,
@@ -451,6 +498,7 @@
         sillHeight: sill !== null ? sill : DEFAULTS.window.sill,
         height: top !== null ? top - (sill !== null ? sill : DEFAULTS.window.sill) : WINDOW_HEIGHT,
         sillSource: sill !== null ? 'file' : 'default',
+        ...(frame ? {frame} : {}),
       };
     });
     m.doors = (Array.isArray(json.doors) ? json.doors : []).map((d, i) => {
@@ -561,7 +609,8 @@
                  bounds: m.bounds ? [m.bounds.x, m.bounds.y, m.bounds.x+m.bounds.w, m.bounds.y+m.bounds.h] : null},
       walls: m.walls.map(w => ({id:w.id, rect:w.rect.slice(), kind:w.kind, bearing:w.bearing})),
       windows: m.windows.map(w => ({id:w.id, rect:w.rect.slice(), kind:w.kind,
-        group:w.group || undefined, sillHeight:w.sillHeight, height:w.height})),
+        group:w.group || undefined, sillHeight:w.sillHeight, height:w.height,
+        ...(w.frame ? {frame:{...w.frame, ...(w.frame.panelRatios ? {panelRatios:w.frame.panelRatios.slice()} : {})}} : {})})),
       doors: m.doors.map(d => ({id:d.id, name:d.name, rect:d.rect.slice(),
         hinge:d.hinge || undefined, closeDir:d.closeDir || undefined, openDir:d.openDir || undefined,
         width:d.width, height:d.height, entry:d.entry || undefined, lintelHeight:d.lintelHeight,
@@ -623,6 +672,6 @@
 
   return {VERSION, MODEL_VERSION, STD_VERSION, DEFAULTS, registry,
           detectFormat, importFromText, exportStandard,
-          builtinModel, blankModel, canDemolish, demolishBlockReason, roomLabelAt,
+          builtinModel, blankModel, canDemolish, demolishBlockReason, roomLabelAt, windowFrameLayout,
           _internal: {computeBounds, markEnvelope, validateGeometry, detectBayGroups, BUILTIN}};
 });

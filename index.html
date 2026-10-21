@@ -781,11 +781,13 @@ function renderWalls(){
 function renderOpenings(){
   const WS = 'stroke="#4f7394" stroke-width="1" vector-effect="non-scaling-stroke"';
   let s = '';
-  WINS.forEach(([x0,y0,x1,y1]) => {
+  planModel.windows.forEach(win => {
+    const [x0,y0,x1,y1] = win.rect;
     const w = x1-x0, h = y1-y0;
     s += `<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="#f7fbfd" ${WS}/>`;
     if (w >= h) [1/3,2/3].forEach(t => s += `<line x1="${x0}" y1="${y0+h*t}" x2="${x1}" y2="${y0+h*t}" ${WS}/>`);
     else [1/3,2/3].forEach(t => s += `<line x1="${x0+w*t}" y1="${y0}" x2="${x0+w*t}" y2="${y1}" ${WS}/>`);
+    s += windowFramePlanSVG(win);
   });
   const DS = 'stroke="#3d3a34" stroke-width="1" vector-effect="non-scaling-stroke"';
   DOORS.forEach(d => {
@@ -810,6 +812,15 @@ function renderOpenings(){
   // 入户标识：箭头位置与朝向由入户门推导（站在门外指向门洞）
   s += entryArrow();
   $('#gOpen').innerHTML = s;
+}
+
+// 显式窗框分格在平面及导入预览中也保留，门窗洞口尺寸不变。
+function windowFramePlanSVG(win){
+  const f = FPCore.windowFrameLayout(win); if (!f) return '';
+  const [x0,y0,x1,y1] = win.rect, hz = x1-x0 >= y1-y0;
+  return f.bars.map(b => hz
+    ? `<rect x="${x0+b.start}" y="${y0}" width="${b.end-b.start}" height="${y1-y0}" fill="${esc(f.color)}"/>`
+    : `<rect x="${x0}" y="${y0+b.start}" width="${x1-x0}" height="${b.end-b.start}" fill="${esc(f.color)}"/>`).join('');
 }
 
 // 入户箭头：沿门洞短轴、背离户型中心的一侧为「外」，箭头从外 1.05m 处指向门脸
@@ -1710,6 +1721,7 @@ function planPreviewSVG(m){
     s += `<rect x="${x0}" y="${y0}" width="${x1-x0}" height="${y1-y0}" fill="#f7fbfd" ${winS}/>`;
     if (hz) s += `<line x1="${x0}" y1="${(y0+y1)/2}" x2="${x1}" y2="${(y0+y1)/2}" ${winS}/>`;
     else s += `<line x1="${(x0+x1)/2}" y1="${y0}" x2="${(x0+x1)/2}" y2="${y1}" ${winS}/>`;
+    s += windowFramePlanSVG(w);
   });
   const charOf = w => w.bearing === 'bearing' ? '#26241f' : w.kind === 'exterior' ? '#8f897d' : w.kind === 'low' ? '#e9e3d8' : '#a7a195';
   m.walls.forEach(w => {
@@ -2619,6 +2631,26 @@ function buildArch(){
     colliders.push([wx(r[0]), wz(r[1]), wx(r[2]), wz(r[3])]);
     const gTop = Math.min(head, top); if (gTop <= sill) return;
     const [x0, y0, x1, y1] = r, hz = (x1-x0) >= (y1-y0), L = M(hz ? x1-x0 : y1-y0), gh = gTop - sill, cx = wx((x0+x1)/2), cz = wz((y0+y1)/2);
+    const layout = FPCore.windowFrameLayout(w);
+    if (layout){
+      const group = new THREE.Group(), fm = mat(layout.color, {roughness:.5, metalness:.4});
+      group.name = 'window:' + w.id;
+      group.userData = {windowId:w.id, panelCount:layout.panels.length};
+      const part = (start, end, bottom, upper, depth, material, name) => {
+        if (upper <= bottom) return;
+        const span = M(end-start), t = M((start+end)/2) - L/2;
+        const mesh = new THREE.Mesh(new THREE.BoxGeometry(hz ? span : depth, upper-bottom, hz ? depth : span), material);
+        mesh.name = name; mesh.position.set(cx+(hz ? t : 0), (bottom+upper)/2, cz+(hz ? 0 : t));
+        mesh.castShadow = material === fm; group.add(mesh);
+      };
+      const rail = M(layout.width), depth = M(layout.depth);
+      layout.panels.forEach((p, i) => part(p.start, p.end, sill+rail, Math.min(head-rail, gTop), .01, glassMat, 'glass:'+i));
+      layout.bars.forEach((b, i) => part(b.start, b.end, sill, gTop, depth, fm, 'bar:'+i));
+      part(0, layout.length, sill, Math.min(sill+rail, gTop), depth, fm, 'bottom-rail');
+      part(0, layout.length, Math.max(head-rail, sill), gTop, depth, fm, 'top-rail');
+      archUp.add(group);
+      return;
+    }
     const pane = new THREE.Mesh(new THREE.BoxGeometry(hz ? L : .01, gh, hz ? .01 : L), glassMat); pane.position.set(cx, sill + gh/2, cz); archUp.add(pane);
     const n = Math.max(1, Math.round(L/.9));
     for (let k = 0; k <= n; k++){ const t = -L/2 + k*L/n, mu = new THREE.Mesh(new THREE.BoxGeometry(hz ? .04 : .06, gh, hz ? .06 : .04), frameMat);
