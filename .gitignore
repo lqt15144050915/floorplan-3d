@@ -31,3 +31,4 @@ tmp/
 # 用户改图转换中间产物（正式输入与成品已整理到 samples/）
 tools/*.json
 tools/compare.html
+__pycache__/

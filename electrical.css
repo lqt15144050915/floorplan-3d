@@ -1,0 +1,31 @@
+body.electrical #lib,body.electrical #lib3d{display:none!important}
+body.electrical #hint3d{display:none}
+#view3d{isolation:isolate}
+.app{overflow:hidden}
+#electricalLib[hidden],#electricalNotice[hidden]{display:none}
+.ep-catalog{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:0 12px}
+.ep-catalog button{display:flex;align-items:center;gap:8px;text-align:left;border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px 8px;cursor:pointer}
+.ep-catalog button.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.ep-icon{display:grid;place-items:center;background:#f4f6f6;color:var(--teal);border:1px solid #c8d5d5;border-radius:5px;width:30px;height:30px;font-size:17px;flex:none}
+.ep-list{padding:0 12px 12px;display:grid;gap:6px}
+.ep-row{display:flex;align-items:center;gap:8px;padding:9px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;text-align:left;width:100%}
+.ep-row.on{border-color:var(--accent);background:var(--accent-soft)}
+.ep-row span{flex:1;min-width:0;overflow-wrap:anywhere}
+.ep-row small{display:block;color:var(--muted);font-size:11px}
+.ep-warning{color:#a83a23;background:#fff1e9;border-radius:6px;padding:7px 9px;font-size:12px;margin:8px 0;overflow-wrap:anywhere}
+.ep-help{color:var(--muted);font-size:12px;margin:8px 0;line-height:1.7}
+.ep-counter{display:flex;gap:7px;margin-bottom:10px}
+.ep-counter span{background:#edf3f2;color:var(--teal);border-radius:6px;padding:5px 10px}
+#electricalNotice{position:absolute;left:50%;top:14px;transform:translateX(-50%);max-width:calc(100% - 24px);z-index:3;display:flex;align-items:center;gap:8px;background:rgba(255,253,249,.96);border:1px solid #ccd9d6;border-radius:10px;padding:8px 12px;box-shadow:0 3px 14px #0001;font-size:12px}
+#electricalNotice .btn{border:1px solid var(--line);padding:3px 8px}
+.ep-marker{pointer-events:auto;cursor:pointer;border:1px solid #fff;background:#2f5d62;color:#fff;border-radius:14px;padding:2px 7px;font:12px/1.6 -apple-system,'Microsoft YaHei',sans-serif;box-shadow:0 2px 5px #0003;white-space:nowrap}
+.ep-marker.selected{background:#b5653a}
+#plan .ep-point{cursor:grab;outline:none}
+#plan .ep-point:focus .ep-dot{stroke:#b5653a;stroke-width:3}
+#plan .ep-point text{pointer-events:none}
+body.electrical #gDimHover,body.electrical #dimTip{display:none}
+@media(max-width:1100px){#electricalNotice{font-size:11px;top:8px}.ep-catalog{grid-template-columns:1fr 1fr}}
+@media(max-width:1100px){
+  aside.lib:not(.open),aside.right:not(.open){visibility:hidden;pointer-events:none}
+  body.electrical aside.lib,body.electrical aside.right{transition:none}
+}

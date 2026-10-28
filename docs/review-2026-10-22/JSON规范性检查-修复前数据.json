@@ -1,0 +1,344 @@
+{
+  "source": "D:\\AI\\户型图\\floorplan-3d\\samples\\我的改图_阳台大玻璃.json",
+  "sha256": "e44dc2f2b5208ff8699c8a987a0b1a00b11d2d719c56324d0fb4a133a1585814",
+  "counts": {
+    "walls": 44,
+    "windows": 9,
+    "doors": 5,
+    "slides": 1,
+    "rooms": 6
+  },
+  "material_count": 8,
+  "strict_structure_issues": [],
+  "project_validator_and_roundtrip": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "defaults": [],
+    "lostOrChanged": [],
+    "rooms": [
+      {
+        "id": "R01",
+        "netAreaM2": 64.967828
+      },
+      {
+        "id": "R02",
+        "netAreaM2": 2.491216
+      },
+      {
+        "id": "R03",
+        "netAreaM2": 9.095636
+      },
+      {
+        "id": "R04",
+        "netAreaM2": 3.853929
+      },
+      {
+        "id": "R05",
+        "netAreaM2": 17.179022
+      },
+      {
+        "id": "R06",
+        "netAreaM2": 10.016596
+      }
+    ],
+    "openingFloors": [
+      {
+        "id": "d0",
+        "continuous": false
+      },
+      {
+        "id": "d1",
+        "continuous": true,
+        "matId": "tile800",
+        "roomIds": [
+          "R01",
+          "R06"
+        ]
+      },
+      {
+        "id": "d2",
+        "continuous": true,
+        "matId": "tile800",
+        "roomIds": [
+          "R01",
+          "R05"
+        ]
+      },
+      {
+        "id": "d3",
+        "continuous": false
+      },
+      {
+        "id": "d4",
+        "continuous": true,
+        "matId": "tile800",
+        "roomIds": [
+          "R03",
+          "R01"
+        ]
+      },
+      {
+        "id": "s0",
+        "continuous": false
+      }
+    ]
+  },
+  "rooms": [
+    {
+      "id": "R01",
+      "name": "客餐厅(开放区)",
+      "vertices": 68,
+      "adjacent_duplicates": 21,
+      "collinear_after_dedup": 21,
+      "backtracks": 2,
+      "floor_coverage_area_m2": 66.371323,
+      "label_inside": true,
+      "independent_net_area_m2": 64.967828
+    },
+    {
+      "id": "R02",
+      "name": "卫生间",
+      "vertices": 20,
+      "adjacent_duplicates": 5,
+      "collinear_after_dedup": 5,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 2.9924,
+      "label_inside": true,
+      "independent_net_area_m2": 2.491216
+    },
+    {
+      "id": "R03",
+      "name": "卧室",
+      "vertices": 20,
+      "adjacent_duplicates": 4,
+      "collinear_after_dedup": 4,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 9.987,
+      "label_inside": true,
+      "independent_net_area_m2": 9.095636
+    },
+    {
+      "id": "R04",
+      "name": "卫生间",
+      "vertices": 20,
+      "adjacent_duplicates": 8,
+      "collinear_after_dedup": 8,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 4.0473,
+      "label_inside": true,
+      "independent_net_area_m2": 3.853929
+    },
+    {
+      "id": "R05",
+      "name": "主卧室",
+      "vertices": 20,
+      "adjacent_duplicates": 7,
+      "collinear_after_dedup": 7,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 17.72495,
+      "label_inside": true,
+      "independent_net_area_m2": 17.179022
+    },
+    {
+      "id": "R06",
+      "name": "卧室",
+      "vertices": 26,
+      "adjacent_duplicates": 7,
+      "collinear_after_dedup": 7,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 10.49835,
+      "label_inside": true,
+      "independent_net_area_m2": 10.016596
+    }
+  ],
+  "net_overlap_m2": 0.0,
+  "floor_outside_closed_plan_m2": 0.0,
+  "uncovered_enclosed_area_m2": 0.0,
+  "wall_overlaps": [
+    {
+      "ids": [
+        "w5",
+        "w41"
+      ],
+      "area_mm2": 984
+    },
+    {
+      "ids": [
+        "w42",
+        "w43"
+      ],
+      "area_mm2": 14400
+    }
+  ],
+  "perimeter_kind_candidates": [
+    {
+      "id": "w1",
+      "kind": "interior",
+      "bearing": "bearing",
+      "rect": [
+        12917,
+        388,
+        13475,
+        633
+      ],
+      "currently_demolishable": false
+    },
+    {
+      "id": "w7",
+      "kind": "interior",
+      "bearing": "bearing",
+      "rect": [
+        11976,
+        388,
+        12114,
+        633
+      ],
+      "currently_demolishable": false
+    },
+    {
+      "id": "w9",
+      "kind": "interior",
+      "bearing": "bearing",
+      "rect": [
+        13032,
+        8440,
+        13475,
+        8685
+      ],
+      "currently_demolishable": false
+    },
+    {
+      "id": "w10",
+      "kind": "interior",
+      "bearing": "bearing",
+      "rect": [
+        10033,
+        8440,
+        11089,
+        8685
+      ],
+      "currently_demolishable": false
+    },
+    {
+      "id": "w17",
+      "kind": "interior",
+      "bearing": "non_bearing",
+      "rect": [
+        1955,
+        3204,
+        2215,
+        3449
+      ],
+      "currently_demolishable": true
+    },
+    {
+      "id": "w21",
+      "kind": "interior",
+      "bearing": "non_bearing",
+      "rect": [
+        5,
+        7728,
+        387,
+        7973
+      ],
+      "currently_demolishable": true
+    },
+    {
+      "id": "w22",
+      "kind": "interior",
+      "bearing": "non_bearing",
+      "rect": [
+        632,
+        8440,
+        724,
+        8685
+      ],
+      "currently_demolishable": true
+    },
+    {
+      "id": "w23",
+      "kind": "interior",
+      "bearing": "bearing",
+      "rect": [
+        2759,
+        8440,
+        3248,
+        8685
+      ],
+      "currently_demolishable": false
+    },
+    {
+      "id": "w24",
+      "kind": "interior",
+      "bearing": "non_bearing",
+      "rect": [
+        387,
+        3204,
+        1068,
+        3449
+      ],
+      "currently_demolishable": true
+    },
+    {
+      "id": "w25",
+      "kind": "interior",
+      "bearing": "non_bearing",
+      "rect": [
+        2215,
+        5,
+        2460,
+        1704
+      ],
+      "currently_demolishable": true
+    },
+    {
+      "id": "w26",
+      "kind": "interior",
+      "bearing": "bearing",
+      "rect": [
+        2215,
+        1704,
+        2460,
+        3449
+      ],
+      "currently_demolishable": false
+    },
+    {
+      "id": "w27",
+      "kind": "interior",
+      "bearing": "non_bearing",
+      "rect": [
+        387,
+        3449,
+        632,
+        4950
+      ],
+      "currently_demolishable": true
+    },
+    {
+      "id": "w31",
+      "kind": "interior",
+      "bearing": "non_bearing",
+      "rect": [
+        387,
+        7728,
+        632,
+        8685
+      ],
+      "currently_demolishable": true
+    },
+    {
+      "id": "w33",
+      "kind": "interior",
+      "bearing": "bearing",
+      "rect": [
+        11731,
+        5,
+        11976,
+        1597
+      ],
+      "currently_demolishable": false
+    }
+  ]
+}

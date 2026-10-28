@@ -3,6 +3,7 @@
 不增删任何墙段。输出 tools/svg_pure_v2.json + 桌面副本。"""
 import json, re, shutil, os
 from collections import deque
+from normalize_floorplan import normalize_plan
 
 svg = open(r"C:\Users\LQT15\Desktop\Group 48097711.svg", encoding="utf-8").read()
 def rot90(x,y,w,h,cx,cy):
@@ -190,7 +191,7 @@ def on_envelope(r, tol=30):
     return min(abs(r[0]-BX0), abs(r[2]-BX1), abs(r[1]-BY0), abs(r[3]-BY1)) <= tol
 
 # ---- 组装格式 C（携带窗台/窗高/门开向） ----
-NORTH_BED_X = [(4500,7500),(9000,12000)]   # 北侧两间卧室的窗 x 中心范围（落地窗）
+NORTH_BED_X = [(9000,12000)]   # 仅北卧室为落地窗；客餐厅北窗为普通窗（2026-10-22 用户更正）
 def win_spec(i, r):
     french = (id(r) in balcony) or any(lo < (r[0]+r[2])/2 < hi for lo,hi in NORTH_BED_X) and r[3] < 100
     if french: return {'id':'win%d'%i, 'rect':r, 'kind':'french', 'sillHeight':200, 'height':2200}  # 落地窗：下沿留 200
@@ -208,6 +209,7 @@ out={
  'slides':[{'id':'s%d'%i, 'rect':s['rect'], 'vertical':s['vertical'], 'height':2100} for i,s in enumerate(slides)],
  'rooms':[{'id':r['id'], 'name':r['name'], 'polygon':r['poly'], 'matId':('antislip' if '卫生间' in r['name'] else 'tile800' if '客餐厅' in r['name'] else 'tile600' if (r['name']=='厨房' or r['name']=='阳台') else 'wood'), 'counted':True} for r in named],
 }
+out, normalized_changes = normalize_plan(out)
 json.dump(out, open('tools/svg_pure_v2.json','w',encoding='utf-8'), ensure_ascii=False, indent=1)
 shutil.copy('tools/svg_pure_v2.json', r'C:\Users\LQT15\Desktop\我的改图_纯SVG_V2.json')
 print(f"纯SVG版（格式C）：墙 {len(out['walls'])} 窗 {len(out['windows'])}（落地 {sum(1 for w in out['windows'] if w['kind']=='french')}）门 {len(out['doors'])} 滑轨 {len(out['slides'])} 房间 {len(out['rooms'])}")

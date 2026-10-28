@@ -1,0 +1,4045 @@
+{
+  "schemaVersion": "floorplan.project/1",
+  "exportedAt": "2026-10-28T03:05:25.425Z",
+  "project": {
+    "id": "6dc73e9a-c355-4b1e-b3f7-184905d3e7ba",
+    "name": "点位预览演示",
+    "createdAt": "2026-10-28T02:53:43.550Z",
+    "updatedAt": "2026-10-28T03:05:25.420Z",
+    "archivedAt": null,
+    "model": {
+      "version": "fp.model/1",
+      "meta": {
+        "name": "我的改图（纯 SVG 还原 V2） · 阳台大玻璃",
+        "units": "mm",
+        "coordinateSystem": "top-left-inner-y-down",
+        "ceilingHeight": 2800,
+        "isDefault": false,
+        "source": {
+          "format": "C",
+          "file": "我的改图_阳台大玻璃.json"
+        },
+        "declaredBounds": {
+          "x": -240,
+          "y": -240,
+          "w": 13960,
+          "h": 10563
+        },
+        "key": "mmvivrf1y8qvw"
+      },
+      "bounds": {
+        "x": -240,
+        "y": -240,
+        "w": 13960,
+        "h": 10563
+      },
+      "walls": [
+        {
+          "id": "w0",
+          "rect": [
+            2215,
+            -240,
+            3202,
+            5
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": true
+        },
+        {
+          "id": "w1",
+          "rect": [
+            12917,
+            388,
+            13475,
+            633
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w2",
+          "rect": [
+            11150,
+            -240,
+            11976,
+            5
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": true
+        },
+        {
+          "id": "w3",
+          "rect": [
+            3990,
+            -240,
+            5038,
+            5
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w4",
+          "rect": [
+            7218,
+            -240,
+            7754,
+            5
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w5",
+          "rect": [
+            8549,
+            -240,
+            9153,
+            5
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w6",
+          "rect": [
+            6637,
+            -240,
+            7218,
+            5
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": true
+        },
+        {
+          "id": "w7",
+          "rect": [
+            11976,
+            388,
+            12114,
+            633
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w8",
+          "rect": [
+            12710,
+            3204,
+            13475,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w9",
+          "rect": [
+            13032,
+            8440,
+            13475,
+            8685
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w10",
+          "rect": [
+            10033,
+            8440,
+            11089,
+            8685
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w11",
+          "rect": [
+            7218,
+            3204,
+            7746,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w12",
+          "rect": [
+            8993,
+            3327,
+            9039,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w13",
+          "rect": [
+            9758,
+            3327,
+            11731,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w14",
+          "rect": [
+            9788,
+            3449,
+            10033,
+            3511
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w15",
+          "rect": [
+            6270,
+            3204,
+            6973,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w16",
+          "rect": [
+            2460,
+            3204,
+            3393,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w17",
+          "rect": [
+            1955,
+            3204,
+            2215,
+            3449
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w18",
+          "rect": [
+            632,
+            4827,
+            2055,
+            4950
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w19",
+          "rect": [
+            2942,
+            4827,
+            3003,
+            4950
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w20",
+          "rect": [
+            -240,
+            4705,
+            387,
+            4950
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w21",
+          "rect": [
+            5,
+            7728,
+            387,
+            7973
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w22",
+          "rect": [
+            632,
+            8440,
+            724,
+            8685
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w23",
+          "rect": [
+            2759,
+            8440,
+            3248,
+            8685
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w24",
+          "rect": [
+            387,
+            3204,
+            1068,
+            3449
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w25",
+          "rect": [
+            2215,
+            5,
+            2460,
+            1704
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w26",
+          "rect": [
+            2215,
+            1704,
+            2460,
+            3449
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w27",
+          "rect": [
+            387,
+            3449,
+            632,
+            4950
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w28",
+          "rect": [
+            -240,
+            4950,
+            5,
+            7973
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w29",
+          "rect": [
+            3003,
+            6052,
+            3248,
+            8440
+          ],
+          "kind": "interior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w30",
+          "rect": [
+            3003,
+            4827,
+            3248,
+            6052
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w31",
+          "rect": [
+            387,
+            7728,
+            632,
+            8685
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w32",
+          "rect": [
+            6973,
+            5,
+            7218,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w33",
+          "rect": [
+            11731,
+            5,
+            11976,
+            1597
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w34",
+          "rect": [
+            11731,
+            1597,
+            11976,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w35",
+          "rect": [
+            9788,
+            4399,
+            10033,
+            6886
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w36",
+          "rect": [
+            9788,
+            6886,
+            10033,
+            8685
+          ],
+          "kind": "interior",
+          "bearing": "bearing",
+          "envelope": false
+        },
+        {
+          "id": "w37",
+          "rect": [
+            9788,
+            8685,
+            10033,
+            10323
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w38",
+          "rect": [
+            13475,
+            6067,
+            13720,
+            8685
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": true
+        },
+        {
+          "id": "w39",
+          "rect": [
+            13475,
+            388,
+            13720,
+            3449
+          ],
+          "kind": "exterior",
+          "bearing": "bearing",
+          "envelope": true
+        },
+        {
+          "id": "w40",
+          "rect": [
+            13475,
+            3449,
+            13720,
+            6067
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w41",
+          "rect": [
+            8870,
+            -3,
+            8993,
+            3449
+          ],
+          "kind": "interior",
+          "bearing": "non_bearing",
+          "envelope": false
+        },
+        {
+          "id": "w42",
+          "rect": [
+            3003,
+            10078,
+            3248,
+            10323
+          ],
+          "kind": "exterior",
+          "bearing": "non_bearing",
+          "envelope": true
+        },
+        {
+          "id": "w43",
+          "rect": [
+            3066,
+            10140,
+            3186,
+            10260
+          ],
+          "kind": "interior",
+          "bearing": "bearing",
+          "envelope": false
+        }
+      ],
+      "windows": [
+        {
+          "id": "win0",
+          "rect": [
+            724,
+            8440,
+            2759,
+            8685
+          ],
+          "wallId": "w22",
+          "kind": "standard",
+          "group": null,
+          "sillHeight": 900,
+          "height": 1500,
+          "sillSource": "file"
+        },
+        {
+          "id": "win1",
+          "rect": [
+            3003,
+            8685,
+            3248,
+            10078
+          ],
+          "wallId": "w23",
+          "kind": "french",
+          "group": null,
+          "sillHeight": 200,
+          "height": 2200,
+          "sillSource": "file",
+          "frame": {
+            "panelRatios": [
+              1
+            ],
+            "width": 60,
+            "depth": 60,
+            "color": "#202020"
+          }
+        },
+        {
+          "id": "win2",
+          "rect": [
+            3202,
+            -240,
+            3990,
+            5
+          ],
+          "wallId": "w0",
+          "kind": "standard",
+          "group": null,
+          "sillHeight": 900,
+          "height": 1500,
+          "sillSource": "file"
+        },
+        {
+          "id": "win3",
+          "rect": [
+            3248,
+            10078,
+            9788,
+            10323
+          ],
+          "wallId": "w37",
+          "kind": "french",
+          "group": null,
+          "sillHeight": 200,
+          "height": 2200,
+          "sillSource": "file",
+          "frame": {
+            "panelRatios": [
+              1,
+              3.75,
+              3.75,
+              1
+            ],
+            "width": 60,
+            "depth": 60,
+            "color": "#202020"
+          }
+        },
+        {
+          "id": "win4",
+          "rect": [
+            5038,
+            -240,
+            6637,
+            5
+          ],
+          "wallId": "w3",
+          "kind": "standard",
+          "group": null,
+          "sillHeight": 900,
+          "height": 1500,
+          "sillSource": "file"
+        },
+        {
+          "id": "win5",
+          "rect": [
+            7754,
+            -240,
+            8549,
+            5
+          ],
+          "wallId": "w4",
+          "kind": "standard",
+          "group": null,
+          "sillHeight": 900,
+          "height": 1500,
+          "sillSource": "file"
+        },
+        {
+          "id": "win6",
+          "rect": [
+            9153,
+            -240,
+            11150,
+            5
+          ],
+          "wallId": "w2",
+          "kind": "french",
+          "group": null,
+          "sillHeight": 200,
+          "height": 2200,
+          "sillSource": "file"
+        },
+        {
+          "id": "win7",
+          "rect": [
+            11089,
+            8440,
+            13032,
+            8685
+          ],
+          "wallId": "w9",
+          "kind": "standard",
+          "group": null,
+          "sillHeight": 900,
+          "height": 1500,
+          "sillSource": "file"
+        },
+        {
+          "id": "win8",
+          "rect": [
+            12114,
+            388,
+            12917,
+            633
+          ],
+          "wallId": "w1",
+          "kind": "standard",
+          "group": null,
+          "sillHeight": 900,
+          "height": 1500,
+          "sillSource": "file"
+        }
+      ],
+      "doors": [
+        {
+          "id": "d0",
+          "name": "入户门",
+          "rect": [
+            1068,
+            3204,
+            1955,
+            3449
+          ],
+          "hinge": [
+            1955,
+            3449
+          ],
+          "closeDir": [
+            -1,
+            0
+          ],
+          "openDir": [
+            0,
+            -1
+          ],
+          "width": 887,
+          "height": 2050,
+          "entry": true,
+          "lintelHeight": 2100,
+          "heightSource": "file",
+          "swing": "swing"
+        },
+        {
+          "id": "d1",
+          "name": "西南卧室门",
+          "rect": [
+            2055,
+            4827,
+            2942,
+            4950
+          ],
+          "hinge": [
+            2942,
+            4950
+          ],
+          "closeDir": [
+            -1,
+            0
+          ],
+          "openDir": [
+            0,
+            1
+          ],
+          "width": 887,
+          "height": 2050,
+          "entry": false,
+          "lintelHeight": 2100,
+          "heightSource": "file",
+          "swing": "swing"
+        },
+        {
+          "id": "d2",
+          "name": "主卧门",
+          "rect": [
+            9788,
+            3511,
+            10033,
+            4399
+          ],
+          "hinge": [
+            9788,
+            3511
+          ],
+          "closeDir": [
+            0,
+            1
+          ],
+          "openDir": [
+            1,
+            0
+          ],
+          "width": 888,
+          "height": 2050,
+          "entry": false,
+          "lintelHeight": 2100,
+          "heightSource": "file",
+          "swing": "swing"
+        },
+        {
+          "id": "d3",
+          "name": "卫生间门(东)",
+          "rect": [
+            11976,
+            3204,
+            12710,
+            3449
+          ],
+          "hinge": [
+            11976,
+            3449
+          ],
+          "closeDir": [
+            1,
+            0
+          ],
+          "openDir": [
+            0,
+            -1
+          ],
+          "width": 734,
+          "height": 2050,
+          "entry": false,
+          "lintelHeight": 2100,
+          "heightSource": "file",
+          "swing": "swing"
+        },
+        {
+          "id": "d4",
+          "name": "北卧室门",
+          "rect": [
+            9039,
+            3327,
+            9758,
+            3449
+          ],
+          "hinge": [
+            9039,
+            3449
+          ],
+          "closeDir": [
+            1,
+            0
+          ],
+          "openDir": [
+            0,
+            -1
+          ],
+          "width": 719,
+          "height": 2050,
+          "entry": false,
+          "lintelHeight": 2100,
+          "heightSource": "file",
+          "swing": "swing"
+        }
+      ],
+      "slides": [
+        {
+          "id": "s0",
+          "rect": [
+            7218,
+            1513,
+            8870,
+            1635
+          ],
+          "vertical": false,
+          "height": 2100,
+          "heightSource": "file"
+        }
+      ],
+      "rooms": [
+        {
+          "id": "R01",
+          "name": "客餐厅(开放区)",
+          "polygon": [
+            [
+              632,
+              3449
+            ],
+            [
+              3393,
+              3449
+            ],
+            [
+              3393,
+              3204
+            ],
+            [
+              2460,
+              3204
+            ],
+            [
+              2460,
+              -3
+            ],
+            [
+              6960,
+              -3
+            ],
+            [
+              6960,
+              -40
+            ],
+            [
+              6973,
+              -40
+            ],
+            [
+              6973,
+              3260
+            ],
+            [
+              6270,
+              3260
+            ],
+            [
+              6270,
+              3360
+            ],
+            [
+              7746,
+              3360
+            ],
+            [
+              7746,
+              3260
+            ],
+            [
+              7218,
+              3260
+            ],
+            [
+              7218,
+              1560
+            ],
+            [
+              8870,
+              1560
+            ],
+            [
+              8870,
+              1660
+            ],
+            [
+              8993,
+              1660
+            ],
+            [
+              8993,
+              3360
+            ],
+            [
+              9758,
+              3360
+            ],
+            [
+              9758,
+              3410
+            ],
+            [
+              9788,
+              3410
+            ],
+            [
+              9788,
+              10160
+            ],
+            [
+              3248,
+              10160
+            ],
+            [
+              3248,
+              4910
+            ],
+            [
+              632,
+              4910
+            ]
+          ],
+          "matId": "tile800",
+          "labelAt": [
+            5566,
+            3704
+          ],
+          "counted": true,
+          "floorElevation": 0
+        },
+        {
+          "id": "R02",
+          "name": "卫生间",
+          "polygon": [
+            [
+              7218,
+              -90
+            ],
+            [
+              8860,
+              -90
+            ],
+            [
+              8860,
+              -40
+            ],
+            [
+              8870,
+              -40
+            ],
+            [
+              8870,
+              10
+            ],
+            [
+              8993,
+              10
+            ],
+            [
+              8993,
+              1510
+            ],
+            [
+              8870,
+              1510
+            ],
+            [
+              8870,
+              1610
+            ],
+            [
+              7218,
+              1610
+            ]
+          ],
+          "matId": "antislip",
+          "labelAt": [
+            8055,
+            760
+          ],
+          "counted": true,
+          "floorElevation": 0
+        },
+        {
+          "id": "R03",
+          "name": "卧室",
+          "polygon": [
+            [
+              8870,
+              10
+            ],
+            [
+              8993,
+              10
+            ],
+            [
+              8993,
+              -40
+            ],
+            [
+              9010,
+              -40
+            ],
+            [
+              9010,
+              -90
+            ],
+            [
+              11710,
+              -90
+            ],
+            [
+              11710,
+              -40
+            ],
+            [
+              11731,
+              -40
+            ],
+            [
+              11731,
+              3410
+            ],
+            [
+              8993,
+              3410
+            ],
+            [
+              8993,
+              3310
+            ],
+            [
+              8870,
+              3310
+            ]
+          ],
+          "matId": "tile800",
+          "labelAt": [
+            10349,
+            1660
+          ],
+          "counted": true,
+          "floorElevation": 0
+        },
+        {
+          "id": "R04",
+          "name": "卫生间",
+          "polygon": [
+            [
+              11976,
+              560
+            ],
+            [
+              13475,
+              560
+            ],
+            [
+              13475,
+              3260
+            ],
+            [
+              11976,
+              3260
+            ]
+          ],
+          "matId": "antislip",
+          "labelAt": [
+            12726,
+            1910
+          ],
+          "counted": true,
+          "floorElevation": 0
+        },
+        {
+          "id": "R05",
+          "name": "主卧室",
+          "polygon": [
+            [
+              10033,
+              3410
+            ],
+            [
+              10060,
+              3410
+            ],
+            [
+              10060,
+              3360
+            ],
+            [
+              13475,
+              3360
+            ],
+            [
+              13475,
+              8510
+            ],
+            [
+              10033,
+              8510
+            ]
+          ],
+          "matId": "tile800",
+          "labelAt": [
+            11757,
+            5935
+          ],
+          "counted": true,
+          "floorElevation": 0
+        },
+        {
+          "id": "R06",
+          "name": "卧室",
+          "polygon": [
+            [
+              5,
+              4910
+            ],
+            [
+              10,
+              4910
+            ],
+            [
+              10,
+              4860
+            ],
+            [
+              2942,
+              4860
+            ],
+            [
+              2942,
+              4910
+            ],
+            [
+              3003,
+              4910
+            ],
+            [
+              3003,
+              8460
+            ],
+            [
+              2960,
+              8460
+            ],
+            [
+              2960,
+              8510
+            ],
+            [
+              632,
+              8510
+            ],
+            [
+              632,
+              7810
+            ],
+            [
+              5,
+              7810
+            ]
+          ],
+          "matId": "tile800",
+          "labelAt": [
+            1295,
+            6933
+          ],
+          "counted": true,
+          "floorElevation": 0
+        }
+      ],
+      "materials": {
+        "wood": {
+          "name": "橡木地板",
+          "price": 320,
+          "sw": "#d8b88a"
+        },
+        "walnut": {
+          "name": "胡桃木地板",
+          "price": 380,
+          "sw": "#9b7250"
+        },
+        "tile800": {
+          "name": "800 地砖",
+          "price": 220,
+          "sw": "#ebe6dc"
+        },
+        "tile600": {
+          "name": "600 地砖",
+          "price": 160,
+          "sw": "#dfe3e1"
+        },
+        "marble": {
+          "name": "大理石",
+          "price": 650,
+          "sw": "#f1eee8"
+        },
+        "antislip": {
+          "name": "300 防滑砖",
+          "price": 140,
+          "sw": "#d3d8d4"
+        },
+        "terrazzo": {
+          "name": "水磨石",
+          "price": 280,
+          "sw": "#e6dfd3"
+        },
+        "carpet": {
+          "name": "满铺地毯",
+          "price": 200,
+          "sw": "#c9c3d3"
+        }
+      },
+      "furniture": [],
+      "dims": null,
+      "defaults": []
+    },
+    "state": {
+      "furniture": [],
+      "rooms": {
+        "R01": {
+          "name": "客餐厅(开放区)",
+          "mat": "tile800"
+        },
+        "R02": {
+          "name": "卫生间",
+          "mat": "antislip"
+        },
+        "R03": {
+          "name": "卧室",
+          "mat": "tile800"
+        },
+        "R04": {
+          "name": "卫生间",
+          "mat": "antislip"
+        },
+        "R05": {
+          "name": "主卧室",
+          "mat": "tile800"
+        },
+        "R06": {
+          "name": "卧室",
+          "mat": "tile800"
+        }
+      },
+      "demolished": [],
+      "measures": [],
+      "electrical": [
+        {
+          "id": "fmvrit8621",
+          "type": "socket5",
+          "name": "客厅备用插座",
+          "wallId": "w25",
+          "roomId": "R01",
+          "normal": [
+            1,
+            0
+          ],
+          "along": 805,
+          "height": 300,
+          "count": 2,
+          "layout": "horizontal",
+          "gap": 10,
+          "color": "#ffffff"
+        },
+        {
+          "id": "fmvriwase2",
+          "type": "switch2",
+          "name": "客厅双开开关",
+          "wallId": "w25",
+          "roomId": "R01",
+          "normal": [
+            1,
+            0
+          ],
+          "along": 480,
+          "height": 1300,
+          "count": 1,
+          "layout": "horizontal",
+          "gap": 10,
+          "color": "#ffffff"
+        },
+        {
+          "id": "fmvrj5i0d2",
+          "type": "network",
+          "name": "网络插座",
+          "wallId": "w25",
+          "roomId": "R01",
+          "normal": [
+            1,
+            0
+          ],
+          "along": 1480,
+          "height": 300,
+          "count": 1,
+          "layout": "horizontal",
+          "gap": 10,
+          "color": "#ffffff"
+        }
+      ]
+    },
+    "versions": [
+      {
+        "id": "dca9e773-f99e-46bf-bca8-a37213fc7320",
+        "createdAt": "2026-10-28T02:53:43.550Z",
+        "label": "初始版本",
+        "model": {
+          "version": "fp.model/1",
+          "meta": {
+            "name": "我的改图（纯 SVG 还原 V2） · 阳台大玻璃",
+            "units": "mm",
+            "coordinateSystem": "top-left-inner-y-down",
+            "ceilingHeight": 2800,
+            "isDefault": false,
+            "source": {
+              "format": "C",
+              "file": "我的改图_阳台大玻璃.json"
+            },
+            "declaredBounds": {
+              "x": -240,
+              "y": -240,
+              "w": 13960,
+              "h": 10563
+            },
+            "key": "mmvivrf1y8qvw"
+          },
+          "bounds": {
+            "x": -240,
+            "y": -240,
+            "w": 13960,
+            "h": 10563
+          },
+          "walls": [
+            {
+              "id": "w0",
+              "rect": [
+                2215,
+                -240,
+                3202,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w1",
+              "rect": [
+                12917,
+                388,
+                13475,
+                633
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w2",
+              "rect": [
+                11150,
+                -240,
+                11976,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w3",
+              "rect": [
+                3990,
+                -240,
+                5038,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w4",
+              "rect": [
+                7218,
+                -240,
+                7754,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w5",
+              "rect": [
+                8549,
+                -240,
+                9153,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w6",
+              "rect": [
+                6637,
+                -240,
+                7218,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w7",
+              "rect": [
+                11976,
+                388,
+                12114,
+                633
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w8",
+              "rect": [
+                12710,
+                3204,
+                13475,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w9",
+              "rect": [
+                13032,
+                8440,
+                13475,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w10",
+              "rect": [
+                10033,
+                8440,
+                11089,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w11",
+              "rect": [
+                7218,
+                3204,
+                7746,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w12",
+              "rect": [
+                8993,
+                3327,
+                9039,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w13",
+              "rect": [
+                9758,
+                3327,
+                11731,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w14",
+              "rect": [
+                9788,
+                3449,
+                10033,
+                3511
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w15",
+              "rect": [
+                6270,
+                3204,
+                6973,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w16",
+              "rect": [
+                2460,
+                3204,
+                3393,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w17",
+              "rect": [
+                1955,
+                3204,
+                2215,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w18",
+              "rect": [
+                632,
+                4827,
+                2055,
+                4950
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w19",
+              "rect": [
+                2942,
+                4827,
+                3003,
+                4950
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w20",
+              "rect": [
+                -240,
+                4705,
+                387,
+                4950
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w21",
+              "rect": [
+                5,
+                7728,
+                387,
+                7973
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w22",
+              "rect": [
+                632,
+                8440,
+                724,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w23",
+              "rect": [
+                2759,
+                8440,
+                3248,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w24",
+              "rect": [
+                387,
+                3204,
+                1068,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w25",
+              "rect": [
+                2215,
+                5,
+                2460,
+                1704
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w26",
+              "rect": [
+                2215,
+                1704,
+                2460,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w27",
+              "rect": [
+                387,
+                3449,
+                632,
+                4950
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w28",
+              "rect": [
+                -240,
+                4950,
+                5,
+                7973
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w29",
+              "rect": [
+                3003,
+                6052,
+                3248,
+                8440
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w30",
+              "rect": [
+                3003,
+                4827,
+                3248,
+                6052
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w31",
+              "rect": [
+                387,
+                7728,
+                632,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w32",
+              "rect": [
+                6973,
+                5,
+                7218,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w33",
+              "rect": [
+                11731,
+                5,
+                11976,
+                1597
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w34",
+              "rect": [
+                11731,
+                1597,
+                11976,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w35",
+              "rect": [
+                9788,
+                4399,
+                10033,
+                6886
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w36",
+              "rect": [
+                9788,
+                6886,
+                10033,
+                8685
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w37",
+              "rect": [
+                9788,
+                8685,
+                10033,
+                10323
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w38",
+              "rect": [
+                13475,
+                6067,
+                13720,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w39",
+              "rect": [
+                13475,
+                388,
+                13720,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w40",
+              "rect": [
+                13475,
+                3449,
+                13720,
+                6067
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w41",
+              "rect": [
+                8870,
+                -3,
+                8993,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w42",
+              "rect": [
+                3003,
+                10078,
+                3248,
+                10323
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w43",
+              "rect": [
+                3066,
+                10140,
+                3186,
+                10260
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            }
+          ],
+          "windows": [
+            {
+              "id": "win0",
+              "rect": [
+                724,
+                8440,
+                2759,
+                8685
+              ],
+              "wallId": "w22",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win1",
+              "rect": [
+                3003,
+                8685,
+                3248,
+                10078
+              ],
+              "wallId": "w23",
+              "kind": "french",
+              "group": null,
+              "sillHeight": 200,
+              "height": 2200,
+              "sillSource": "file",
+              "frame": {
+                "panelRatios": [
+                  1
+                ],
+                "width": 60,
+                "depth": 60,
+                "color": "#202020"
+              }
+            },
+            {
+              "id": "win2",
+              "rect": [
+                3202,
+                -240,
+                3990,
+                5
+              ],
+              "wallId": "w0",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win3",
+              "rect": [
+                3248,
+                10078,
+                9788,
+                10323
+              ],
+              "wallId": "w37",
+              "kind": "french",
+              "group": null,
+              "sillHeight": 200,
+              "height": 2200,
+              "sillSource": "file",
+              "frame": {
+                "panelRatios": [
+                  1,
+                  3.75,
+                  3.75,
+                  1
+                ],
+                "width": 60,
+                "depth": 60,
+                "color": "#202020"
+              }
+            },
+            {
+              "id": "win4",
+              "rect": [
+                5038,
+                -240,
+                6637,
+                5
+              ],
+              "wallId": "w3",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win5",
+              "rect": [
+                7754,
+                -240,
+                8549,
+                5
+              ],
+              "wallId": "w4",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win6",
+              "rect": [
+                9153,
+                -240,
+                11150,
+                5
+              ],
+              "wallId": "w2",
+              "kind": "french",
+              "group": null,
+              "sillHeight": 200,
+              "height": 2200,
+              "sillSource": "file"
+            },
+            {
+              "id": "win7",
+              "rect": [
+                11089,
+                8440,
+                13032,
+                8685
+              ],
+              "wallId": "w9",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win8",
+              "rect": [
+                12114,
+                388,
+                12917,
+                633
+              ],
+              "wallId": "w1",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            }
+          ],
+          "doors": [
+            {
+              "id": "d0",
+              "name": "入户门",
+              "rect": [
+                1068,
+                3204,
+                1955,
+                3449
+              ],
+              "hinge": [
+                1955,
+                3449
+              ],
+              "closeDir": [
+                -1,
+                0
+              ],
+              "openDir": [
+                0,
+                -1
+              ],
+              "width": 887,
+              "height": 2050,
+              "entry": true,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d1",
+              "name": "西南卧室门",
+              "rect": [
+                2055,
+                4827,
+                2942,
+                4950
+              ],
+              "hinge": [
+                2942,
+                4950
+              ],
+              "closeDir": [
+                -1,
+                0
+              ],
+              "openDir": [
+                0,
+                1
+              ],
+              "width": 887,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d2",
+              "name": "主卧门",
+              "rect": [
+                9788,
+                3511,
+                10033,
+                4399
+              ],
+              "hinge": [
+                9788,
+                3511
+              ],
+              "closeDir": [
+                0,
+                1
+              ],
+              "openDir": [
+                1,
+                0
+              ],
+              "width": 888,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d3",
+              "name": "卫生间门(东)",
+              "rect": [
+                11976,
+                3204,
+                12710,
+                3449
+              ],
+              "hinge": [
+                11976,
+                3449
+              ],
+              "closeDir": [
+                1,
+                0
+              ],
+              "openDir": [
+                0,
+                -1
+              ],
+              "width": 734,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d4",
+              "name": "北卧室门",
+              "rect": [
+                9039,
+                3327,
+                9758,
+                3449
+              ],
+              "hinge": [
+                9039,
+                3449
+              ],
+              "closeDir": [
+                1,
+                0
+              ],
+              "openDir": [
+                0,
+                -1
+              ],
+              "width": 719,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            }
+          ],
+          "slides": [
+            {
+              "id": "s0",
+              "rect": [
+                7218,
+                1513,
+                8870,
+                1635
+              ],
+              "vertical": false,
+              "height": 2100,
+              "heightSource": "file"
+            }
+          ],
+          "rooms": [
+            {
+              "id": "R01",
+              "name": "客餐厅(开放区)",
+              "polygon": [
+                [
+                  632,
+                  3449
+                ],
+                [
+                  3393,
+                  3449
+                ],
+                [
+                  3393,
+                  3204
+                ],
+                [
+                  2460,
+                  3204
+                ],
+                [
+                  2460,
+                  -3
+                ],
+                [
+                  6960,
+                  -3
+                ],
+                [
+                  6960,
+                  -40
+                ],
+                [
+                  6973,
+                  -40
+                ],
+                [
+                  6973,
+                  3260
+                ],
+                [
+                  6270,
+                  3260
+                ],
+                [
+                  6270,
+                  3360
+                ],
+                [
+                  7746,
+                  3360
+                ],
+                [
+                  7746,
+                  3260
+                ],
+                [
+                  7218,
+                  3260
+                ],
+                [
+                  7218,
+                  1560
+                ],
+                [
+                  8870,
+                  1560
+                ],
+                [
+                  8870,
+                  1660
+                ],
+                [
+                  8993,
+                  1660
+                ],
+                [
+                  8993,
+                  3360
+                ],
+                [
+                  9758,
+                  3360
+                ],
+                [
+                  9758,
+                  3410
+                ],
+                [
+                  9788,
+                  3410
+                ],
+                [
+                  9788,
+                  10160
+                ],
+                [
+                  3248,
+                  10160
+                ],
+                [
+                  3248,
+                  4910
+                ],
+                [
+                  632,
+                  4910
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                5566,
+                3704
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R02",
+              "name": "卫生间",
+              "polygon": [
+                [
+                  7218,
+                  -90
+                ],
+                [
+                  8860,
+                  -90
+                ],
+                [
+                  8860,
+                  -40
+                ],
+                [
+                  8870,
+                  -40
+                ],
+                [
+                  8870,
+                  10
+                ],
+                [
+                  8993,
+                  10
+                ],
+                [
+                  8993,
+                  1510
+                ],
+                [
+                  8870,
+                  1510
+                ],
+                [
+                  8870,
+                  1610
+                ],
+                [
+                  7218,
+                  1610
+                ]
+              ],
+              "matId": "antislip",
+              "labelAt": [
+                8055,
+                760
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R03",
+              "name": "卧室",
+              "polygon": [
+                [
+                  8870,
+                  10
+                ],
+                [
+                  8993,
+                  10
+                ],
+                [
+                  8993,
+                  -40
+                ],
+                [
+                  9010,
+                  -40
+                ],
+                [
+                  9010,
+                  -90
+                ],
+                [
+                  11710,
+                  -90
+                ],
+                [
+                  11710,
+                  -40
+                ],
+                [
+                  11731,
+                  -40
+                ],
+                [
+                  11731,
+                  3410
+                ],
+                [
+                  8993,
+                  3410
+                ],
+                [
+                  8993,
+                  3310
+                ],
+                [
+                  8870,
+                  3310
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                10349,
+                1660
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R04",
+              "name": "卫生间",
+              "polygon": [
+                [
+                  11976,
+                  560
+                ],
+                [
+                  13475,
+                  560
+                ],
+                [
+                  13475,
+                  3260
+                ],
+                [
+                  11976,
+                  3260
+                ]
+              ],
+              "matId": "antislip",
+              "labelAt": [
+                12726,
+                1910
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R05",
+              "name": "主卧室",
+              "polygon": [
+                [
+                  10033,
+                  3410
+                ],
+                [
+                  10060,
+                  3410
+                ],
+                [
+                  10060,
+                  3360
+                ],
+                [
+                  13475,
+                  3360
+                ],
+                [
+                  13475,
+                  8510
+                ],
+                [
+                  10033,
+                  8510
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                11757,
+                5935
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R06",
+              "name": "卧室",
+              "polygon": [
+                [
+                  5,
+                  4910
+                ],
+                [
+                  10,
+                  4910
+                ],
+                [
+                  10,
+                  4860
+                ],
+                [
+                  2942,
+                  4860
+                ],
+                [
+                  2942,
+                  4910
+                ],
+                [
+                  3003,
+                  4910
+                ],
+                [
+                  3003,
+                  8460
+                ],
+                [
+                  2960,
+                  8460
+                ],
+                [
+                  2960,
+                  8510
+                ],
+                [
+                  632,
+                  8510
+                ],
+                [
+                  632,
+                  7810
+                ],
+                [
+                  5,
+                  7810
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                1295,
+                6933
+              ],
+              "counted": true,
+              "floorElevation": 0
+            }
+          ],
+          "materials": {
+            "wood": {
+              "name": "橡木地板",
+              "price": 320,
+              "sw": "#d8b88a"
+            },
+            "walnut": {
+              "name": "胡桃木地板",
+              "price": 380,
+              "sw": "#9b7250"
+            },
+            "tile800": {
+              "name": "800 地砖",
+              "price": 220,
+              "sw": "#ebe6dc"
+            },
+            "tile600": {
+              "name": "600 地砖",
+              "price": 160,
+              "sw": "#dfe3e1"
+            },
+            "marble": {
+              "name": "大理石",
+              "price": 650,
+              "sw": "#f1eee8"
+            },
+            "antislip": {
+              "name": "300 防滑砖",
+              "price": 140,
+              "sw": "#d3d8d4"
+            },
+            "terrazzo": {
+              "name": "水磨石",
+              "price": 280,
+              "sw": "#e6dfd3"
+            },
+            "carpet": {
+              "name": "满铺地毯",
+              "price": 200,
+              "sw": "#c9c3d3"
+            }
+          },
+          "furniture": [],
+          "dims": null,
+          "defaults": []
+        },
+        "state": {
+          "furniture": [],
+          "rooms": {
+            "R01": {
+              "name": "客餐厅(开放区)",
+              "mat": "tile800"
+            },
+            "R02": {
+              "name": "卫生间",
+              "mat": "antislip"
+            },
+            "R03": {
+              "name": "卧室",
+              "mat": "tile800"
+            },
+            "R04": {
+              "name": "卫生间",
+              "mat": "antislip"
+            },
+            "R05": {
+              "name": "主卧室",
+              "mat": "tile800"
+            },
+            "R06": {
+              "name": "卧室",
+              "mat": "tile800"
+            }
+          },
+          "demolished": [],
+          "measures": [],
+          "electrical": []
+        }
+      },
+      {
+        "id": "47c997f2-37ed-4680-853b-d272cc89d0ec",
+        "createdAt": "2026-10-28T03:05:16.331Z",
+        "label": "手动保存",
+        "model": {
+          "version": "fp.model/1",
+          "meta": {
+            "name": "我的改图（纯 SVG 还原 V2） · 阳台大玻璃",
+            "units": "mm",
+            "coordinateSystem": "top-left-inner-y-down",
+            "ceilingHeight": 2800,
+            "isDefault": false,
+            "source": {
+              "format": "C",
+              "file": "我的改图_阳台大玻璃.json"
+            },
+            "declaredBounds": {
+              "x": -240,
+              "y": -240,
+              "w": 13960,
+              "h": 10563
+            },
+            "key": "mmvivrf1y8qvw"
+          },
+          "bounds": {
+            "x": -240,
+            "y": -240,
+            "w": 13960,
+            "h": 10563
+          },
+          "walls": [
+            {
+              "id": "w0",
+              "rect": [
+                2215,
+                -240,
+                3202,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w1",
+              "rect": [
+                12917,
+                388,
+                13475,
+                633
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w2",
+              "rect": [
+                11150,
+                -240,
+                11976,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w3",
+              "rect": [
+                3990,
+                -240,
+                5038,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w4",
+              "rect": [
+                7218,
+                -240,
+                7754,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w5",
+              "rect": [
+                8549,
+                -240,
+                9153,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w6",
+              "rect": [
+                6637,
+                -240,
+                7218,
+                5
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w7",
+              "rect": [
+                11976,
+                388,
+                12114,
+                633
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w8",
+              "rect": [
+                12710,
+                3204,
+                13475,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w9",
+              "rect": [
+                13032,
+                8440,
+                13475,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w10",
+              "rect": [
+                10033,
+                8440,
+                11089,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w11",
+              "rect": [
+                7218,
+                3204,
+                7746,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w12",
+              "rect": [
+                8993,
+                3327,
+                9039,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w13",
+              "rect": [
+                9758,
+                3327,
+                11731,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w14",
+              "rect": [
+                9788,
+                3449,
+                10033,
+                3511
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w15",
+              "rect": [
+                6270,
+                3204,
+                6973,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w16",
+              "rect": [
+                2460,
+                3204,
+                3393,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w17",
+              "rect": [
+                1955,
+                3204,
+                2215,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w18",
+              "rect": [
+                632,
+                4827,
+                2055,
+                4950
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w19",
+              "rect": [
+                2942,
+                4827,
+                3003,
+                4950
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w20",
+              "rect": [
+                -240,
+                4705,
+                387,
+                4950
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w21",
+              "rect": [
+                5,
+                7728,
+                387,
+                7973
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w22",
+              "rect": [
+                632,
+                8440,
+                724,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w23",
+              "rect": [
+                2759,
+                8440,
+                3248,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w24",
+              "rect": [
+                387,
+                3204,
+                1068,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w25",
+              "rect": [
+                2215,
+                5,
+                2460,
+                1704
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w26",
+              "rect": [
+                2215,
+                1704,
+                2460,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w27",
+              "rect": [
+                387,
+                3449,
+                632,
+                4950
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w28",
+              "rect": [
+                -240,
+                4950,
+                5,
+                7973
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w29",
+              "rect": [
+                3003,
+                6052,
+                3248,
+                8440
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w30",
+              "rect": [
+                3003,
+                4827,
+                3248,
+                6052
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w31",
+              "rect": [
+                387,
+                7728,
+                632,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w32",
+              "rect": [
+                6973,
+                5,
+                7218,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w33",
+              "rect": [
+                11731,
+                5,
+                11976,
+                1597
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w34",
+              "rect": [
+                11731,
+                1597,
+                11976,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w35",
+              "rect": [
+                9788,
+                4399,
+                10033,
+                6886
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w36",
+              "rect": [
+                9788,
+                6886,
+                10033,
+                8685
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            },
+            {
+              "id": "w37",
+              "rect": [
+                9788,
+                8685,
+                10033,
+                10323
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w38",
+              "rect": [
+                13475,
+                6067,
+                13720,
+                8685
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w39",
+              "rect": [
+                13475,
+                388,
+                13720,
+                3449
+              ],
+              "kind": "exterior",
+              "bearing": "bearing",
+              "envelope": true
+            },
+            {
+              "id": "w40",
+              "rect": [
+                13475,
+                3449,
+                13720,
+                6067
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w41",
+              "rect": [
+                8870,
+                -3,
+                8993,
+                3449
+              ],
+              "kind": "interior",
+              "bearing": "non_bearing",
+              "envelope": false
+            },
+            {
+              "id": "w42",
+              "rect": [
+                3003,
+                10078,
+                3248,
+                10323
+              ],
+              "kind": "exterior",
+              "bearing": "non_bearing",
+              "envelope": true
+            },
+            {
+              "id": "w43",
+              "rect": [
+                3066,
+                10140,
+                3186,
+                10260
+              ],
+              "kind": "interior",
+              "bearing": "bearing",
+              "envelope": false
+            }
+          ],
+          "windows": [
+            {
+              "id": "win0",
+              "rect": [
+                724,
+                8440,
+                2759,
+                8685
+              ],
+              "wallId": "w22",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win1",
+              "rect": [
+                3003,
+                8685,
+                3248,
+                10078
+              ],
+              "wallId": "w23",
+              "kind": "french",
+              "group": null,
+              "sillHeight": 200,
+              "height": 2200,
+              "sillSource": "file",
+              "frame": {
+                "panelRatios": [
+                  1
+                ],
+                "width": 60,
+                "depth": 60,
+                "color": "#202020"
+              }
+            },
+            {
+              "id": "win2",
+              "rect": [
+                3202,
+                -240,
+                3990,
+                5
+              ],
+              "wallId": "w0",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win3",
+              "rect": [
+                3248,
+                10078,
+                9788,
+                10323
+              ],
+              "wallId": "w37",
+              "kind": "french",
+              "group": null,
+              "sillHeight": 200,
+              "height": 2200,
+              "sillSource": "file",
+              "frame": {
+                "panelRatios": [
+                  1,
+                  3.75,
+                  3.75,
+                  1
+                ],
+                "width": 60,
+                "depth": 60,
+                "color": "#202020"
+              }
+            },
+            {
+              "id": "win4",
+              "rect": [
+                5038,
+                -240,
+                6637,
+                5
+              ],
+              "wallId": "w3",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win5",
+              "rect": [
+                7754,
+                -240,
+                8549,
+                5
+              ],
+              "wallId": "w4",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win6",
+              "rect": [
+                9153,
+                -240,
+                11150,
+                5
+              ],
+              "wallId": "w2",
+              "kind": "french",
+              "group": null,
+              "sillHeight": 200,
+              "height": 2200,
+              "sillSource": "file"
+            },
+            {
+              "id": "win7",
+              "rect": [
+                11089,
+                8440,
+                13032,
+                8685
+              ],
+              "wallId": "w9",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            },
+            {
+              "id": "win8",
+              "rect": [
+                12114,
+                388,
+                12917,
+                633
+              ],
+              "wallId": "w1",
+              "kind": "standard",
+              "group": null,
+              "sillHeight": 900,
+              "height": 1500,
+              "sillSource": "file"
+            }
+          ],
+          "doors": [
+            {
+              "id": "d0",
+              "name": "入户门",
+              "rect": [
+                1068,
+                3204,
+                1955,
+                3449
+              ],
+              "hinge": [
+                1955,
+                3449
+              ],
+              "closeDir": [
+                -1,
+                0
+              ],
+              "openDir": [
+                0,
+                -1
+              ],
+              "width": 887,
+              "height": 2050,
+              "entry": true,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d1",
+              "name": "西南卧室门",
+              "rect": [
+                2055,
+                4827,
+                2942,
+                4950
+              ],
+              "hinge": [
+                2942,
+                4950
+              ],
+              "closeDir": [
+                -1,
+                0
+              ],
+              "openDir": [
+                0,
+                1
+              ],
+              "width": 887,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d2",
+              "name": "主卧门",
+              "rect": [
+                9788,
+                3511,
+                10033,
+                4399
+              ],
+              "hinge": [
+                9788,
+                3511
+              ],
+              "closeDir": [
+                0,
+                1
+              ],
+              "openDir": [
+                1,
+                0
+              ],
+              "width": 888,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d3",
+              "name": "卫生间门(东)",
+              "rect": [
+                11976,
+                3204,
+                12710,
+                3449
+              ],
+              "hinge": [
+                11976,
+                3449
+              ],
+              "closeDir": [
+                1,
+                0
+              ],
+              "openDir": [
+                0,
+                -1
+              ],
+              "width": 734,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            },
+            {
+              "id": "d4",
+              "name": "北卧室门",
+              "rect": [
+                9039,
+                3327,
+                9758,
+                3449
+              ],
+              "hinge": [
+                9039,
+                3449
+              ],
+              "closeDir": [
+                1,
+                0
+              ],
+              "openDir": [
+                0,
+                -1
+              ],
+              "width": 719,
+              "height": 2050,
+              "entry": false,
+              "lintelHeight": 2100,
+              "heightSource": "file",
+              "swing": "swing"
+            }
+          ],
+          "slides": [
+            {
+              "id": "s0",
+              "rect": [
+                7218,
+                1513,
+                8870,
+                1635
+              ],
+              "vertical": false,
+              "height": 2100,
+              "heightSource": "file"
+            }
+          ],
+          "rooms": [
+            {
+              "id": "R01",
+              "name": "客餐厅(开放区)",
+              "polygon": [
+                [
+                  632,
+                  3449
+                ],
+                [
+                  3393,
+                  3449
+                ],
+                [
+                  3393,
+                  3204
+                ],
+                [
+                  2460,
+                  3204
+                ],
+                [
+                  2460,
+                  -3
+                ],
+                [
+                  6960,
+                  -3
+                ],
+                [
+                  6960,
+                  -40
+                ],
+                [
+                  6973,
+                  -40
+                ],
+                [
+                  6973,
+                  3260
+                ],
+                [
+                  6270,
+                  3260
+                ],
+                [
+                  6270,
+                  3360
+                ],
+                [
+                  7746,
+                  3360
+                ],
+                [
+                  7746,
+                  3260
+                ],
+                [
+                  7218,
+                  3260
+                ],
+                [
+                  7218,
+                  1560
+                ],
+                [
+                  8870,
+                  1560
+                ],
+                [
+                  8870,
+                  1660
+                ],
+                [
+                  8993,
+                  1660
+                ],
+                [
+                  8993,
+                  3360
+                ],
+                [
+                  9758,
+                  3360
+                ],
+                [
+                  9758,
+                  3410
+                ],
+                [
+                  9788,
+                  3410
+                ],
+                [
+                  9788,
+                  10160
+                ],
+                [
+                  3248,
+                  10160
+                ],
+                [
+                  3248,
+                  4910
+                ],
+                [
+                  632,
+                  4910
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                5566,
+                3704
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R02",
+              "name": "卫生间",
+              "polygon": [
+                [
+                  7218,
+                  -90
+                ],
+                [
+                  8860,
+                  -90
+                ],
+                [
+                  8860,
+                  -40
+                ],
+                [
+                  8870,
+                  -40
+                ],
+                [
+                  8870,
+                  10
+                ],
+                [
+                  8993,
+                  10
+                ],
+                [
+                  8993,
+                  1510
+                ],
+                [
+                  8870,
+                  1510
+                ],
+                [
+                  8870,
+                  1610
+                ],
+                [
+                  7218,
+                  1610
+                ]
+              ],
+              "matId": "antislip",
+              "labelAt": [
+                8055,
+                760
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R03",
+              "name": "卧室",
+              "polygon": [
+                [
+                  8870,
+                  10
+                ],
+                [
+                  8993,
+                  10
+                ],
+                [
+                  8993,
+                  -40
+                ],
+                [
+                  9010,
+                  -40
+                ],
+                [
+                  9010,
+                  -90
+                ],
+                [
+                  11710,
+                  -90
+                ],
+                [
+                  11710,
+                  -40
+                ],
+                [
+                  11731,
+                  -40
+                ],
+                [
+                  11731,
+                  3410
+                ],
+                [
+                  8993,
+                  3410
+                ],
+                [
+                  8993,
+                  3310
+                ],
+                [
+                  8870,
+                  3310
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                10349,
+                1660
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R04",
+              "name": "卫生间",
+              "polygon": [
+                [
+                  11976,
+                  560
+                ],
+                [
+                  13475,
+                  560
+                ],
+                [
+                  13475,
+                  3260
+                ],
+                [
+                  11976,
+                  3260
+                ]
+              ],
+              "matId": "antislip",
+              "labelAt": [
+                12726,
+                1910
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R05",
+              "name": "主卧室",
+              "polygon": [
+                [
+                  10033,
+                  3410
+                ],
+                [
+                  10060,
+                  3410
+                ],
+                [
+                  10060,
+                  3360
+                ],
+                [
+                  13475,
+                  3360
+                ],
+                [
+                  13475,
+                  8510
+                ],
+                [
+                  10033,
+                  8510
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                11757,
+                5935
+              ],
+              "counted": true,
+              "floorElevation": 0
+            },
+            {
+              "id": "R06",
+              "name": "卧室",
+              "polygon": [
+                [
+                  5,
+                  4910
+                ],
+                [
+                  10,
+                  4910
+                ],
+                [
+                  10,
+                  4860
+                ],
+                [
+                  2942,
+                  4860
+                ],
+                [
+                  2942,
+                  4910
+                ],
+                [
+                  3003,
+                  4910
+                ],
+                [
+                  3003,
+                  8460
+                ],
+                [
+                  2960,
+                  8460
+                ],
+                [
+                  2960,
+                  8510
+                ],
+                [
+                  632,
+                  8510
+                ],
+                [
+                  632,
+                  7810
+                ],
+                [
+                  5,
+                  7810
+                ]
+              ],
+              "matId": "tile800",
+              "labelAt": [
+                1295,
+                6933
+              ],
+              "counted": true,
+              "floorElevation": 0
+            }
+          ],
+          "materials": {
+            "wood": {
+              "name": "橡木地板",
+              "price": 320,
+              "sw": "#d8b88a"
+            },
+            "walnut": {
+              "name": "胡桃木地板",
+              "price": 380,
+              "sw": "#9b7250"
+            },
+            "tile800": {
+              "name": "800 地砖",
+              "price": 220,
+              "sw": "#ebe6dc"
+            },
+            "tile600": {
+              "name": "600 地砖",
+              "price": 160,
+              "sw": "#dfe3e1"
+            },
+            "marble": {
+              "name": "大理石",
+              "price": 650,
+              "sw": "#f1eee8"
+            },
+            "antislip": {
+              "name": "300 防滑砖",
+              "price": 140,
+              "sw": "#d3d8d4"
+            },
+            "terrazzo": {
+              "name": "水磨石",
+              "price": 280,
+              "sw": "#e6dfd3"
+            },
+            "carpet": {
+              "name": "满铺地毯",
+              "price": 200,
+              "sw": "#c9c3d3"
+            }
+          },
+          "furniture": [],
+          "dims": null,
+          "defaults": []
+        },
+        "state": {
+          "furniture": [],
+          "rooms": {
+            "R01": {
+              "name": "客餐厅(开放区)",
+              "mat": "tile800"
+            },
+            "R02": {
+              "name": "卫生间",
+              "mat": "antislip"
+            },
+            "R03": {
+              "name": "卧室",
+              "mat": "tile800"
+            },
+            "R04": {
+              "name": "卫生间",
+              "mat": "antislip"
+            },
+            "R05": {
+              "name": "主卧室",
+              "mat": "tile800"
+            },
+            "R06": {
+              "name": "卧室",
+              "mat": "tile800"
+            }
+          },
+          "demolished": [],
+          "measures": [],
+          "electrical": [
+            {
+              "id": "fmvrit8621",
+              "type": "socket5",
+              "name": "客厅备用插座",
+              "wallId": "w25",
+              "roomId": "R01",
+              "normal": [
+                1,
+                0
+              ],
+              "along": 805,
+              "height": 300,
+              "count": 2,
+              "layout": "horizontal",
+              "gap": 10,
+              "color": "#ffffff"
+            },
+            {
+              "id": "fmvriwase2",
+              "type": "switch2",
+              "name": "客厅双开开关",
+              "wallId": "w25",
+              "roomId": "R01",
+              "normal": [
+                1,
+                0
+              ],
+              "along": 480,
+              "height": 1300,
+              "count": 1,
+              "layout": "horizontal",
+              "gap": 10,
+              "color": "#ffffff"
+            },
+            {
+              "id": "fmvrj5i0d2",
+              "type": "network",
+              "name": "网络插座",
+              "wallId": "w25",
+              "roomId": "R01",
+              "normal": [
+                1,
+                0
+              ],
+              "along": 1480,
+              "height": 300,
+              "count": 1,
+              "layout": "horizontal",
+              "gap": 10,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "source": "D:\\AI\\户型图\\floorplan-3d\\samples\\我的改图_阳台大玻璃.json",
+  "sha256": "e0fb086c23ef3a3df41eb4666bdb3c9f4c6872a0e1d1c76a3a834da76d5763a3",
+  "counts": {
+    "walls": 44,
+    "windows": 9,
+    "doors": 5,
+    "slides": 1,
+    "rooms": 6
+  },
+  "material_count": 8,
+  "strict_structure_issues": [],
+  "project_validator_and_roundtrip": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "defaults": [],
+    "lostOrChanged": [],
+    "rooms": [
+      {
+        "id": "R01",
+        "netAreaM2": 64.967828
+      },
+      {
+        "id": "R02",
+        "netAreaM2": 2.491216
+      },
+      {
+        "id": "R03",
+        "netAreaM2": 9.095636
+      },
+      {
+        "id": "R04",
+        "netAreaM2": 3.853929
+      },
+      {
+        "id": "R05",
+        "netAreaM2": 17.179022
+      },
+      {
+        "id": "R06",
+        "netAreaM2": 10.016596
+      }
+    ],
+    "openingFloors": [
+      {
+        "id": "d0",
+        "continuous": false
+      },
+      {
+        "id": "d1",
+        "continuous": true,
+        "matId": "tile800",
+        "roomIds": [
+          "R01",
+          "R06"
+        ]
+      },
+      {
+        "id": "d2",
+        "continuous": true,
+        "matId": "tile800",
+        "roomIds": [
+          "R01",
+          "R05"
+        ]
+      },
+      {
+        "id": "d3",
+        "continuous": false
+      },
+      {
+        "id": "d4",
+        "continuous": true,
+        "matId": "tile800",
+        "roomIds": [
+          "R03",
+          "R01"
+        ]
+      },
+      {
+        "id": "s0",
+        "continuous": false
+      }
+    ]
+  },
+  "rooms": [
+    {
+      "id": "R01",
+      "name": "客餐厅(开放区)",
+      "vertices": 26,
+      "adjacent_duplicates": 0,
+      "collinear_after_dedup": 0,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 66.371323,
+      "label_inside": true,
+      "independent_net_area_m2": 64.967828
+    },
+    {
+      "id": "R02",
+      "name": "卫生间",
+      "vertices": 10,
+      "adjacent_duplicates": 0,
+      "collinear_after_dedup": 0,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 2.9924,
+      "label_inside": true,
+      "independent_net_area_m2": 2.491216
+    },
+    {
+      "id": "R03",
+      "name": "卧室",
+      "vertices": 12,
+      "adjacent_duplicates": 0,
+      "collinear_after_dedup": 0,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 9.987,
+      "label_inside": true,
+      "independent_net_area_m2": 9.095636
+    },
+    {
+      "id": "R04",
+      "name": "卫生间",
+      "vertices": 4,
+      "adjacent_duplicates": 0,
+      "collinear_after_dedup": 0,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 4.0473,
+      "label_inside": true,
+      "independent_net_area_m2": 3.853929
+    },
+    {
+      "id": "R05",
+      "name": "主卧室",
+      "vertices": 6,
+      "adjacent_duplicates": 0,
+      "collinear_after_dedup": 0,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 17.72495,
+      "label_inside": true,
+      "independent_net_area_m2": 17.179022
+    },
+    {
+      "id": "R06",
+      "name": "卧室",
+      "vertices": 12,
+      "adjacent_duplicates": 0,
+      "collinear_after_dedup": 0,
+      "backtracks": 0,
+      "floor_coverage_area_m2": 10.49835,
+      "label_inside": true,
+      "independent_net_area_m2": 10.016596
+    }
+  ],
+  "net_overlap_m2": 0.0,
+  "floor_outside_closed_plan_m2": 0.0,
+  "uncovered_enclosed_area_m2": 0.0,
+  "wall_overlaps": [
+    {
+      "ids": [
+        "w5",
+        "w41"
+      ],
+      "area_mm2": 984
+    },
+    {
+      "ids": [
+        "w42",
+        "w43"
+      ],
+      "area_mm2": 14400
+    }
+  ],
+  "perimeter_kind_candidates": []
+}

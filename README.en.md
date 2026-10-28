@@ -2,7 +2,7 @@
 
 [中文](README.md) | English
 
-A pure front-end tool for interior design on a floor plan: place furniture, remove or modify walls, and take measurements on a 2D plan, then switch to a Three.js 3D scene with one click — view it from above or walk through it in first person. The whole app is a single `index.html`: no build step, just open it.
+A pure front-end tool for interior design on a floor plan: place furniture, modify walls, and take measurements in 2D, then switch to a Three.js scene for an overview or walkthrough. Static HTML/CSS/JS files require no build step.
 
 ## Features
 
@@ -24,11 +24,13 @@ A pure front-end tool for interior design on a floor plan: place furniture, remo
 **Plans & Statistics**
 - Automatic calculation of room areas and net usable floor area
 - Change the floor material of each room (wood, tiles, marble, terrazzo, carpet, etc.), with cost estimates based on area plus 5% wastage
-- Undo / redo; plans are auto-saved in the browser's local storage
+- Undo / redo; complete schemes are auto-saved locally, with new/copy/rename/switch actions, the latest 10 version checkpoints and a recoverable recycle bin
 - Chinese / English UI toggle (button on the right of the top bar; defaults to Chinese and remembers your choice)
-- Export to PNG, export / import plans as JSON
+- Export to PNG or a complete scheme JSON containing the floor plan, layout and version history; legacy layout files are also supported
 
 ## Quick Start
+
+The Electrical tab supports wall-mounted sockets, network outlets and switches, exact net-wall offsets and mounting heights, horizontal/vertical groups, 2D/3D dragging, detailed 86 mm panels and local scheme persistence. See the [point placement guide (Chinese)](docs/水电点位说明.md).
 
 ```bash
 git clone <repository-url>

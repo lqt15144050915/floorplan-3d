@@ -274,6 +274,23 @@
     return {length, width, depth, color:f.color || '#5d6166', panels, bars};
   }
 
+  // 门洞两侧采用同款瓷砖且等高时，延续房间地面；入户、湿区及不同材质仍用门槛。
+  function openingFloor(model, opening, roomState = {}){
+    const stone = {continuous:false};
+    if (opening.entry) return stone;
+    const [x0,y0,x1,y1] = opening.rect, horizontal = x1-x0 >= y1-y0;
+    const cx = (x0+x1)/2, cy = (y0+y1)/2;
+    const probes = horizontal ? [[cx,y0-2],[cx,y1+2]] : [[x0-2,cy],[x1+2,cy]];
+    const rooms = probes.map(p => model.rooms.find(r => ptInPoly(p[0],p[1],r.polygon)));
+    if (rooms.some(r => !r || r.counted === false) || rooms[0].id === rooms[1].id) return stone;
+    const wet = r => r.matId === 'antislip' || roomState[r.id]?.mat === 'antislip' ||
+      /卫生|卫浴|浴室|洗衣|bath|toilet|laundry/i.test(r.name+' '+(roomState[r.id]?.name || ''));
+    if (rooms.some(wet) || (rooms[0].floorElevation || 0) !== (rooms[1].floorElevation || 0)) return stone;
+    const mats = rooms.map(r => roomState[r.id]?.mat || r.matId);
+    const tile = /^(tile\d*|marble|terrazzo)$/.test(mats[0]) || /瓷砖|地砖|tile/i.test(model.materials[mats[0]]?.name || '');
+    return mats[0] === mats[1] && tile ? {continuous:true, matId:mats[0], roomIds:rooms.map(r=>r.id)} : stone;
+  }
+
   /* ======================= Validator ======================= */
   /* 错误 = 拒绝导入（model=null）；警告 = 放行；默认值 = 记录 provenance。
    * 铁律：报告一律引用原始坐标，不修改几何。 */
@@ -670,8 +687,285 @@
     return m;
   }
 
+  /* ======================= 房间净轮廓（派生，不修改地板覆盖几何） =======================
+   * polygon 可为防白缝而伸入墙体。净轮廓 = polygon 减去现存墙、窗带和门槛。
+   * 将边在交点处分段，只保留两侧内外状态不同的段，再连接成外环/洞环。
+   * 使用实际坐标，支持凹多边形、斜边、重叠矩形及一个房间分成多个区域。
+   * 返回面积 mm²、周长 mm；loops 按内部在右侧定向，洞环反向。
+   */
+  function roomInterior(model, room, demolished = []){
+    const poly = room.polygon, removed = new Set(demolished);
+    const xs = poly.map(p => p[0]), ys = poly.map(p => p[1]);
+    const bounds = [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+    const rects = [...model.walls.filter(w => !removed.has(w.id)),
+                   ...model.windows, ...model.doors, ...model.slides]
+      .map(o => o.rect).filter(r => overlap(r, bounds) > 0);
+    const inside = (x, y) => ptInPoly(x, y, poly) &&
+      !rects.some(r => x > r[0] && x < r[2] && y > r[1] && y < r[3]);
+    const segments = [], cross = (a,b) => a[0]*b[1] - a[1]*b[0];
+    const addLoop = points => points.forEach((a,i) => {
+      const b = points[(i+1)%points.length], v = [b[0]-a[0], b[1]-a[1]];
+      if (v[0] || v[1]) segments.push({a, v, cuts:[0,1]});
+    });
+    addLoop(poly);
+    rects.forEach(r => addLoop(R(...r)));
+    const cut = (s,t) => { if (t >= -1e-10 && t <= 1+1e-10) s.cuts.push(Math.max(0, Math.min(1,t))); };
+    for (let i=0; i<segments.length; i++) for (let j=i+1; j<segments.length; j++){
+      const a = segments[i], b = segments[j], d = [b.a[0]-a.a[0], b.a[1]-a.a[1]], c = cross(a.v,b.v);
+      if (Math.abs(c) > 1e-10){
+        const t = cross(d,b.v)/c, u = cross(d,a.v)/c;
+        if (t >= -1e-10 && t <= 1+1e-10 && u >= -1e-10 && u <= 1+1e-10){ cut(a,t); cut(b,u); }
+      } else if (Math.abs(cross(d,a.v)) < 1e-7){
+        // 共线边也需在彼此端点处分段，避免重复墙块或墙面部分重叠时留下假边。
+        const axis = Math.abs(a.v[0]) >= Math.abs(a.v[1]) ? 0 : 1;
+        cut(a, d[axis]/a.v[axis]); cut(a, (d[axis]+b.v[axis])/a.v[axis]);
+        cut(b, -d[axis]/b.v[axis]); cut(b, (a.v[axis]-d[axis])/b.v[axis]);
+      }
+    }
+    const point = (s,t) => s.a.map((v,i) => Math.round((v+s.v[i]*t)*1e7)/1e7);
+    const key = p => p.join(','), edges = new Map();
+    for (const s of segments){
+      const cuts = s.cuts.sort((a,b) => a-b).filter((t,i,a) => !i || t-a[i-1] > 1e-10);
+      for (let i=1; i<cuts.length; i++){
+        let a = point(s,cuts[i-1]), b = point(s,cuts[i]);
+        const dx = b[0]-a[0], dy = b[1]-a[1], len = Math.hypot(dx,dy);
+        if (len < 1e-7) continue;
+        const x = (a[0]+b[0])/2, y = (a[1]+b[1])/2, step = Math.min(1e-4,len*1e-4);
+        const nx = -dy/len*step, ny = dx/len*step;
+        const right = inside(x+nx,y+ny), left = inside(x-nx,y-ny);
+        if (right === left) continue;
+        if (!right) [a,b] = [b,a];
+        edges.set(key(a)+'>'+key(b), {a,b});
+      }
+    }
+    const outgoing = new Map();
+    for (const e of edges.values()){
+      const k = key(e.a);
+      if (!outgoing.has(k)) outgoing.set(k,[]);
+      outgoing.get(k).push(e);
+    }
+    const loops = [];
+    for (const first of edges.values()){
+      if (first.used) continue;
+      const loop = []; let e = first;
+      while (e && !e.used){
+        e.used = true; loop.push(e.a);
+        if (key(e.b) === key(first.a)) break;
+        const candidates = (outgoing.get(key(e.b)) || []).filter(n => !n.used);
+        const dx = e.b[0]-e.a[0], dy = e.b[1]-e.a[1];
+        // 点接触的两块区域各自闭合：优先沿内侧右转，不能跨接成自交环。
+        const turn = n => Math.atan2(dx*(n.b[1]-n.a[1])-dy*(n.b[0]-n.a[0]),
+                                    dx*(n.b[0]-n.a[0])+dy*(n.b[1]-n.a[1]));
+        e = candidates.sort((a,b) => turn(b)-turn(a))[0];
+      }
+      // 只删除同向共线的中间点，保留真实凹角和洞。
+      const clean = loop.filter((p,i) => {
+        const a = loop[(i+loop.length-1)%loop.length], b = loop[(i+1)%loop.length];
+        const u = [p[0]-a[0],p[1]-a[1]], v = [b[0]-p[0],b[1]-p[1]];
+        return Math.abs(cross(u,v)) > 1e-7 || u[0]*v[0]+u[1]*v[1] < 0;
+      });
+      if (clean.length >= 3) loops.push(clean);
+    }
+    let area = 0, perimeter = 0;
+    for (const loop of loops) for (let i=0; i<loop.length; i++){
+      const a = loop[i], b = loop[(i+1)%loop.length];
+      area += (a[0]*b[1]-b[0]*a[1])/2;
+      perimeter += Math.hypot(b[0]-a[0],b[1]-a[1]);
+    }
+    const points = loops.flat();
+    return {loops, area:Math.max(0,area), perimeter,
+      bounds:points.length ? [Math.min(...points.map(p=>p[0])), Math.min(...points.map(p=>p[1])),
+                              Math.max(...points.map(p=>p[0])), Math.max(...points.map(p=>p[1]))] : bounds};
+  }
+
+  // 自动尺寸取房间净轮廓。墙短端面只是墙厚回折，不生成尺寸；洞口只量长轴。
+  function planDimensions(model, demolished = [], interiors = {}){
+    const walls = model.walls.filter(w => !demolished.includes(w.id));
+    const rooms = model.rooms.map(r => ({room:r, geometry:interiors[r.id] || roomInterior(model,r,demolished)}));
+    const result = [];
+    for (const {room,geometry} of rooms) geometry.loops.forEach((loop,k) => {
+      loop.forEach((a,i) => {
+        const b = loop[(i+1)%loop.length], dx=b[0]-a[0], dy=b[1]-a[1], length=Math.hypot(dx,dy);
+        if (length < 1e-6) return;
+        const wallEnd = walls.some(w => {
+          const [x0,y0,x1,y1]=w.rect;
+          return (dx===0 && x1-x0>y1-y0 && (a[0]===x0 || a[0]===x1) && Math.min(a[1],b[1])>=y0 && Math.max(a[1],b[1])<=y1) ||
+                 (dy===0 && y1-y0>x1-x0 && (a[1]===y0 || a[1]===y1) && Math.min(a[0],b[0])>=x0 && Math.max(a[0],b[0])<=x1);
+        });
+        if (!wallEnd) result.push({id:`${room.id}:${k}:${i}`,kind:'room',roomId:room.id,a:a.slice(),b:b.slice(),
+                                  normal:[-dy/length,dx/length],value:length});
+      });
+    });
+    const roomAt = p => rooms.find(({geometry}) => geometry.loops.reduce((hit,loop) => hit !== ptInPoly(p[0],p[1],loop),false));
+    for (const [kind,objects] of [['window',model.windows],['door',model.doors],['slide',model.slides]]){
+      objects.forEach(o => {
+        const [x0,y0,x1,y1]=o.rect, horizontal=x1-x0>=y1-y0, cx=(x0+x1)/2,cy=(y0+y1)/2;
+        const a=horizontal ? [x0,cy] : [cx,y0], b=horizontal ? [x1,cy] : [cx,y1];
+        const negative=roomAt(horizontal ? [cx,y0-2] : [x0-2,cy]);
+        const positive=roomAt(horizontal ? [cx,y1+2] : [x1+2,cy]);
+        let sign;
+        if (kind==='window'){
+          if (positive && !negative) sign=-1;
+          else if (negative && !positive) sign=1;
+          else sign=horizontal ? Math.sign(cy-(model.bounds.y+model.bounds.h/2)) || 1
+                               : Math.sign(cx-(model.bounds.x+model.bounds.w/2)) || 1;
+        } else sign=(positive?.geometry.area || 0)>=(negative?.geometry.area || 0) ? 1 : -1;
+        const normal=horizontal ? [0,sign] : [sign,0];
+        result.push({id:o.id,kind,openingId:o.id,a,b,normal,
+                     ...(kind!=='window' && negative && positive ? {alternateNormal:normal.map(v=>-v)} : {}),
+                     value:horizontal ? x1-x0 : y1-y0});
+      });
+    }
+    return result;
+  }
+
+  // 墙段轴向优先沿相邻洞口/连续墙带确定，短墙垛的长度可能小于墙厚。
+  // 沿房间净轮廓裁出实际外露墙面，交接墙/柱占地不进入长度；两侧分别量取。
+  function wallDimensions(model, demolished = [], interiors = {}){
+    const walls=model.walls.filter(w=>!demolished.includes(w.id));
+    const openings=[...model.windows,...model.doors,...model.slides];
+    const eps=1e-6,near=(a,b)=>Math.abs(a-b)<eps;
+    const along=(r,s,axis)=>near(r[1-axis],s[1-axis])&&near(r[3-axis],s[3-axis])&&
+      (near(r[axis],s[axis+2])||near(r[axis+2],s[axis]));
+    const thicknesses=[...walls,...openings].filter(o=>{
+      const r=o.rect,w=r[2]-r[0],h=r[3]-r[1];return Math.max(w,h)>=2*Math.min(w,h);
+    }).map(o=>Math.min(o.rect[2]-o.rect[0],o.rect[3]-o.rect[1]));
+    const rooms=model.rooms.map(room=>({id:room.id,geometry:interiors[room.id]||roomInterior(model,room,demolished)}));
+    const contains=(p,geometry)=>geometry.loops.reduce((inside,loop)=>inside!==ptInPoly(p[0],p[1],loop),false);
+    return walls.flatMap(w=>{
+      const r=w.rect,width=r[2]-r[0],height=r[3]-r[1];
+      const openingAxes=[0,1].filter(axis=>openings.some(o=>{
+        const s=o.rect,openingAxis=s[2]-s[0]>=s[3]-s[1]?0:1;
+        return openingAxis===axis&&along(r,s,axis);
+      }));
+      const wallAxes=[0,1].filter(axis=>walls.some(o=>o.id!==w.id&&along(r,o.rect,axis)));
+      let axis;
+      if(openingAxes.length===1) axis=openingAxes[0];
+      else if(openingAxes.length===2) return [];
+      else if(wallAxes.length===1) axis=wallAxes[0];
+      else {
+        const widthIsThickness=thicknesses.some(v=>near(v,width)),heightIsThickness=thicknesses.some(v=>near(v,height));
+        if(widthIsThickness!==heightIsThickness) axis=widthIsThickness?1:0;
+        else if(!near(width,height)&&!(widthIsThickness&&heightIsThickness)) axis=width>height?0:1;
+        else return [];
+      }
+      const perp=1-axis,point=(v,face)=>axis===0?[v,face]:[face,v];
+      return [-1,1].flatMap((sign,side)=>{
+        const face=r[perp+(side?2:0)],sample=face+sign*.001;
+        let intervals=[];
+        if(rooms.length){
+          for(const room of rooms) for(const loop of room.geometry.loops) loop.forEach((p,i)=>{
+            const q=loop[(i+1)%loop.length];
+            if(!near(p[perp],face)||!near(q[perp],face)) return;
+            const lo=Math.max(r[axis],Math.min(p[axis],q[axis])),hi=Math.min(r[axis+2],Math.max(p[axis],q[axis]));
+            if(hi-lo>eps&&contains(point((lo+hi)/2,sample),room.geometry)) intervals.push({lo,hi,roomId:room.id});
+          });
+        } else {
+          // 无房间轮廓的导入图仍可量可见墙面；先扣去同侧相交建筑占地。
+          intervals=[{lo:r[axis],hi:r[axis+2]}];
+          for(const o of [...walls.filter(o=>o.id!==w.id),...openings]){
+            const s=o.rect;
+            if(sample<=s[perp]||sample>=s[perp+2]) continue;
+            intervals=intervals.flatMap(v=>{
+              const lo=Math.max(v.lo,s[axis]),hi=Math.min(v.hi,s[axis+2]);
+              if(hi-lo<=eps) return [v];
+              return [...(lo-v.lo>eps?[{lo:v.lo,hi:lo}]:[]),...(v.hi-hi>eps?[{lo:hi,hi:v.hi}]:[])];
+            });
+          }
+        }
+        // 净轮廓上相邻的共线点只产生一条量取项。
+        intervals.sort((a,b)=>String(a.roomId).localeCompare(String(b.roomId))||a.lo-b.lo||a.hi-b.hi);
+        const merged=[];
+        for(const v of intervals){
+          const prev=merged[merged.length-1];
+          if(prev&&prev.roomId===v.roomId&&v.lo<=prev.hi+eps) prev.hi=Math.max(prev.hi,v.hi);
+          else merged.push({...v});
+        }
+        return merged.map((v,i)=>({id:`wall:${w.id}:${side}:${i}`,kind:'wall',wallId:w.id,...(v.roomId?{roomId:v.roomId}:{}),
+          a:point(v.lo,face),b:point(v.hi,face),normal:axis===0?[0,sign]:[sign,0],value:v.hi-v.lo}));
+      });
+    });
+  }
+
+  // 用屏幕容差换算后的净距拾取测量段；同距时优先当前房间，禁止按数值关联。
+  function hitPlanDimension(dimensions, point, tolerance, roomId=null){
+    let hit=null,score=Infinity;
+    for(const d of dimensions){
+      const distance=distToSeg(point[0],point[1],d.a,d.b);
+      if(distance>tolerance) continue;
+      const candidate=distance+(roomId&&d.kind==='room'&&d.roomId!==roomId?tolerance*.25:0);
+      if(candidate<score||(Math.abs(candidate-score)<1e-6&&d.kind==='wall'&&hit?.kind==='wall'&&d.value<hit.value)){hit=d;score=candidate;}
+    }
+    return hit;
+  }
+
+  // 同方向、同量取区间的两侧尺寸合并；不同洞口及异位同值尺寸分别保留。
+  // 保留所有原量取项的 sourceIds，排版只把代表尺寸投影到建筑外侧。
+  function exteriorDimensionLayout(model, dimensions, {fontSize=180, gap=450, step=440, pad=50} = {}){
+    const b=model.bounds, edges={top:b.y,bottom:b.y+b.h,left:b.x,right:b.x+b.w};
+    const lanes={top:[],bottom:[],left:[],right:[]}, items=[];
+    const bounds=[b.x,b.y,b.x+b.w,b.y+b.h];
+    const groups=new Map(), rounded=v=>Math.round(v*1e6)/1e6;
+    dimensions.forEach((d,index)=>{
+      const dx=d.b[0]-d.a[0],dy=d.b[1]-d.a[1],length=Math.hypot(dx,dy);
+      if(length<1e-6) return;
+      const horizontal=Math.abs(dx)>=Math.abs(dy), axis=horizontal?1:0, along=1-axis;
+      const mid=d.a.map((v,i)=>(v+d.b[i])/2), center=axis===1 ? b.y+b.h/2 : b.x+b.w/2;
+      let normal=[-dy/length,dx/length];
+      const desired=d.kind==='room' ? -d.normal[axis] : d.kind==='window' ? d.normal[axis] : Math.sign(mid[axis]-center)||1;
+      const sign=desired<0 ? -1 : 1;
+      if(normal[axis]*sign<0) normal=normal.map(v=>-v);
+      const side=horizontal ? (sign<0?'top':'bottom') : (sign<0?'left':'right');
+      const directionSign=(horizontal?dx:dy)<0?-1:1;
+      const u=[dx/length*directionSign,dy/length*directionSign];
+      const project=p=>p[0]*u[0]+p[1]*u[1],ends=[project(d.a),project(d.b)].sort((a,b)=>a-b);
+      const key=d.kind==='room' ? JSON.stringify(['room',...u.map(rounded),...ends.map(rounded)])
+                              : JSON.stringify([d.kind,d.openingId??d.id??index]);
+      const distance=Math.abs((sign<0?Math.max(d.a[axis],d.b[axis]):Math.min(d.a[axis],d.b[axis]))-edges[side]);
+      const candidate={d,index,dx,dy,length,axis,along,mid,normal,sign,side,distance};
+      const group=groups.get(key);
+      if(!group) groups.set(key,{candidate,sourceIds:[d.id],roomIds:d.roomId?[d.roomId]:[]});
+      else {
+        group.sourceIds.push(d.id);
+        if(d.roomId&&!group.roomIds.includes(d.roomId)) group.roomIds.push(d.roomId);
+        // 保留离建筑外缘更近的一侧，减少投影距离和外围尺寸层数。
+        if(distance<group.candidate.distance) group.candidate=candidate;
+      }
+    });
+    const ordered=[...groups.values()].sort((a,b)=>
+      (a.candidate.d.kind==='room')-(b.candidate.d.kind==='room') || a.candidate.d.value-b.candidate.d.value || a.candidate.index-b.candidate.index);
+    for(const {candidate,sourceIds,roomIds} of ordered){
+      const {d,dx,dy,axis,along,mid,normal,sign,side}=candidate;
+      let angle=Math.atan2(dy,dx)*180/Math.PI;
+      if(angle>=90) angle-=180;
+      if(angle < -90) angle+=180;
+      const text=d.text??String(Math.round(d.value));
+      const tw=[...text].reduce((sum,c)=>sum+fontSize*(c.charCodeAt(0)<128?.62:1),0)+2*pad, th=fontSize+2*pad;
+      const rad=angle*Math.PI/180,bw=Math.abs(Math.cos(rad))*tw+Math.abs(Math.sin(rad))*th,bh=Math.abs(Math.sin(rad))*tw+Math.abs(Math.cos(rad))*th;
+      let placed;
+      for(let lane=0;!placed;lane++){
+        const target=edges[side]+sign*(gap+lane*step);
+        const extreme=sign<0?Math.max(d.a[axis],d.b[axis]):Math.min(d.a[axis],d.b[axis]);
+        const offset=(target-extreme)/normal[axis];
+        const move=p=>p.map((v,i)=>v+normal[i]*offset),p=move(d.a),q=move(d.b),c=move(mid);
+        const box=[c[0]-bw/2,c[1]-bh/2,c[0]+bw/2,c[1]+bh/2];
+        const interval=[Math.min(p[along],q[along],box[along])-100,Math.max(p[along],q[along],box[along+2])+100];
+        const row=lanes[side][lane]||[];
+        if(row.some(r=>interval[0]<r[1]&&interval[1]>r[0])) continue;
+        (lanes[side][lane]??=[]).push(interval);
+        // 界线从外轮廓之外开始，避免穿过户型内部。
+        const witness=[d.a,d.b].map(v=>v.map((x,i)=>x+normal[i]*(edges[side]+sign*60-v[axis])/normal[axis]));
+        placed={...d,sourceIds,roomIds,p,q,c,normal,side,lane,angle,box,tw,th,witness,text};
+      }
+      items.push(placed);
+      const points=[placed.p,placed.q,...placed.witness,[placed.box[0],placed.box[1]],[placed.box[2],placed.box[3]]];
+      for(const p of points){bounds[0]=Math.min(bounds[0],p[0]-100);bounds[1]=Math.min(bounds[1],p[1]-100);bounds[2]=Math.max(bounds[2],p[0]+100);bounds[3]=Math.max(bounds[3],p[1]+100);}
+    }
+    return {items,bounds};
+  }
+
   return {VERSION, MODEL_VERSION, STD_VERSION, DEFAULTS, registry,
           detectFormat, importFromText, exportStandard,
-          builtinModel, blankModel, canDemolish, demolishBlockReason, roomLabelAt, windowFrameLayout,
+          builtinModel, blankModel, canDemolish, demolishBlockReason, roomLabelAt, windowFrameLayout, roomInterior, openingFloor, planDimensions, wallDimensions, exteriorDimensionLayout, hitPlanDimension,
           _internal: {computeBounds, markEnvelope, validateGeometry, detectBayGroups, BUILTIN}};
 });
